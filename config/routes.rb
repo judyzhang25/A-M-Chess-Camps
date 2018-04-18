@@ -13,9 +13,18 @@ Rails.application.routes.draw do
   resources :instructors
   resources :locations
   resources :curriculums
+  resources :users
+  resources :sessions
+  
 
   # Routes for managing camp instructors
   get 'camp_instructors/new', to: 'camp_instructors#new', as: :new_camp_instructor
   post 'camp_instructors', to: 'camp_instructors#create', as: :camp_instructors
   delete 'camp_instructors', to: 'camp_instructors#destroy', as: :camp_instructor
+  
+  # Routs for managing users and sessions
+  get 'user/edit' => 'users#edit', :as => :edit_current_user
+  get 'signup' => 'users#new', :as => :signup
+  get 'login' => 'sessions#new', :as => :login
+  get 'logout' => 'sessions#destroy', :as => :logout
 end
