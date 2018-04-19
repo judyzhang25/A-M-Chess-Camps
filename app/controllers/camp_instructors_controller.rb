@@ -1,4 +1,6 @@
 class CampInstructorsController < ApplicationController
+  before_action :check_login
+  authorize_resource
   
   def new
     @camp_instructor   = CampInstructor.new
