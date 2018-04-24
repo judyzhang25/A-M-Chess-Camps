@@ -1,6 +1,5 @@
 class CampsController < ApplicationController
   before_action :set_camp, only: [:show, :edit, :update, :destroy]
-  before_action :check_login
   authorize_resource
 
   def index

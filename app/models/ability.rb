@@ -7,6 +7,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.role? :admin
       can :manage, :all
+      
     elsif user.role? :instructor
       #read any info in system related to curriculums, locations, or camps
       can :read, Curriculum
@@ -14,10 +15,14 @@ class Ability
       can :read, Camp
       
       #can read their own profile
-      can :show, User, :id => user.id
+      can :show, User do |u|  
+        u.id == user.id
+      end
       
       #can update their own profile
-      can :update, User, :id => user.id
+      can :update, User do |u|  
+        u.id == user.id
+      end
       
       #can see list of all students in their camps
       can :index, Student
@@ -51,7 +56,9 @@ class Ability
       can :read, Camp
       
       #can manage all of their students
-      can :manage, Student, :family_id => user.family.id
+      can :manage, Student do |s|
+        s.family_id == user.family.id
+      end
 
       #can create new registrations for students in their family, but may not edit
       #or remove those registrations once payment is made.

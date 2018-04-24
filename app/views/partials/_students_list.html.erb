@@ -1,0 +1,27 @@
+<div class="card indigo lighten-2">
+  <div class="card-content white-text">
+    <span class="card-title">Students</span>
+    <% if students.empty? %>
+    <p>No students at this time</p>
+    <% else %>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Date of Birth</th>
+          <th>Rating</th>
+          <th>Registrations</th>
+        </thead>
+          <% for student in students %>
+            <tr>
+              <td><%= student.proper_name %></td>
+              <td><%= student.age %></td>
+              <td>&nbsp;<%= student.date_of_birth.strftime("%m/%d/%y") %></td>
+              <td><%= student.rating %></td>
+              <td><%= student.registrations.size %></td>
+            </tr>
+          <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>

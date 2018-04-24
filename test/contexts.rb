@@ -39,8 +39,7 @@ module Contexts
     puts "Built families"
     create_students
     puts "Built students"
-    create_paid_registrations
-    create_deposit_registrations
+    create_registrations
     puts "Built registrations"
   end
 end

@@ -1,0 +1,25 @@
+<div class="card indigo lighten-2">
+  <div class="card-content white-text">
+    <span class="card-title">Registrations</span>
+    <% if registrations.empty? %>
+    <p>No registrations at this time</p>
+    <% else %>
+      <table>
+        <thead>
+          <th>Camp</th>
+          <th>Student</th>
+          <th>Cost</th>
+          <th>Paid</th>
+        </thead>
+          <% for reg in registrations %>
+            <tr>
+              <td><%= reg.camp.name %></td>
+              <td><%= reg.student.proper_name %></td>
+              <td><%= reg.camp.cost %></td>
+              <td><%= reg.payment.nil? ? "No" : "Yes" %></td>
+            </tr>
+          <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>

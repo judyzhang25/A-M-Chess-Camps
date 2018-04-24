@@ -21,10 +21,18 @@ class InstructorsController < ApplicationController
 
   def create
     @instructor = Instructor.new(instructor_params)
-    if @instructor.save
-      redirect_to instructor_path(@instructor), notice: "#{@instructor.first_name} #{@instructor.last_name} was added to the system."
-    else
+    @user = User.new(user_params)
+    @user.role = "instructor"
+    if !@user.save
+      @instructor.valid?
       render action: 'new'
+    else
+      @instructor.user_id = @user.id
+      if @instructor.save
+        redirect_to instructor_path(@instructor), notice: "#{@instructor.first_name} #{@instructor.last_name} was added to the system."
+      else
+        render action: 'new'
+      end
     end
   end
 
@@ -47,6 +55,10 @@ class InstructorsController < ApplicationController
     end
 
     def instructor_params
-      params.require(:instructor).permit(:first_name, :last_name, :bio, :user_id, :email, :phone, :active)
+      params.require(:instructor).permit(:username, :password, :password_confirmation, :first_name, :last_name, :bio, :email, :phone, :active)
+    end
+    
+    def user_params
+      params.require(:owner).permit(:username, :password, :password_confirmation, :phone, :email)
     end
 end

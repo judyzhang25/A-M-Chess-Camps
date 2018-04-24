@@ -3,6 +3,9 @@ include Contexts
 
 Given /^an initial setup$/ do
   # context used for phase 3 only
+  create_users
+  create_more_users
+  create_family_users
   create_curriculums
   create_active_locations
   create_instructors
@@ -27,4 +30,8 @@ Given /^no setup yet$/ do
   delete_past_camps
   delete_upcoming_camps
   delete_more_camp_instructors
+  delete_family_users
+  delete_more_users
+  delete_users
+  
 end
