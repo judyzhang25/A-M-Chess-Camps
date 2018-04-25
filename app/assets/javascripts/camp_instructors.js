@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(document).on('ready', function() {
   function run_ajax(method, data, link, callback=function(res){camp_instructors.get_camp_instructors()}){
     $.ajax({
       method: method,
@@ -34,9 +34,13 @@ $(document).on('turbolinks:load', function() {
     data: {
       camp_instructors: []
     },
+    created() {
+      this.camp_id = $('#camp_id').val();
+    },
+    
     methods: {
       get_camp_instructors: function(){
-        run_ajax('GET', {}, '/camp_instructors.json', function(res){camp_instructors.camp_instructors = res});
+        run_ajax('GET', {}, '/camps/'.concat(this.camp_id, '/instructors.json'), function(res){camp_instructors.camp_instructors = res});
       }
     },
     mounted: function(){

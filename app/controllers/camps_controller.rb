@@ -1,5 +1,5 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :instructors]
   authorize_resource
 
   def index
@@ -39,6 +39,10 @@ class CampsController < ApplicationController
   def destroy
     @camp.destroy
     redirect_to camps_url, notice: "#{@camp.name} was removed from the system."
+  end
+  
+  def instructors
+    @instructors = @camp.instructors.alphabetical
   end
 
   private
