@@ -17,11 +17,12 @@ Rails.application.routes.draw do
   resources :sessions
   resources :families
   resources :students
+  resources :camp_instructors, :only => [:new, :create, :destroy]
 
   # Routes for managing camp instructors
-  get 'camp_instructors/new', to: 'camp_instructors#new', as: :new_camp_instructor
-  post 'camp_instructors', to: 'camp_instructors#create', as: :camp_instructors
-  delete 'camp_instructors', to: 'camp_instructors#destroy', as: :camp_instructor
+  # get 'camp_instructors/new', to: 'camp_instructors#new', as: :new_camp_instructor
+  # post 'camp_instructors', to: 'camp_instructors#create', as: :camp_instructors
+  # delete 'camp_instructors', to: 'camp_instructors#destroy', as: :camp_instructor
   
   # Other custom routes
   get 'camps/:id/instructors', to: 'camps#instructors', as: :camp_instructors_for

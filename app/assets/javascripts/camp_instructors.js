@@ -8,9 +8,11 @@ $(document).on('ready', function() {
       url: link,
       success: function(res) {
         callback(res);
+        camp_instructors.errors = {};
       },
       error: function(res) {
         console.log("error");
+        camp_instructors.errors = res.responseJSON;
         // Will update with an error handling function later
       }
     })
@@ -31,6 +33,36 @@ $(document).on('ready', function() {
         run_ajax('DELETE', {camp_instructor: camp_instructor}, '/camp_instructors/'.concat(camp_instructor['id'], '.json'));       
       }
     }
+  })
+
+//vue component for creating a new camp instructor
+
+  var new_form = Vue.component('new-instructor-form', {
+    template: '#instructor-form-template',
+  
+    mounted() {
+      // need to reconnect the materialize select javascript 
+      $('#instructor_id').material_select()
+    },
+  
+    data: function () {
+      return {
+          camp_id: 0,
+          instructor_id: 0,
+          errors: {}
+      }
+    },
+  
+    methods: {
+      submitForm: function (x) {
+        new_post = {
+          medicine_id: this.camp_id,
+          visit_id: this.instructor
+        }
+        run_ajax('POST', {camp_instructor: new_post}, '/camp_instructors.json')
+        this.switch_modal()
+      }
+    },
   })
 
 //vue instance

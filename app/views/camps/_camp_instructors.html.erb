@@ -1,7 +1,14 @@
 <div class="card indigo lighten-2" id="camp_instructors_list">
   <%= hidden_field_tag "camp_id", @camp.id %>
   <% if @instructors.empty? %>
-    <p>empty</p>
+    <% if can? :new, CampInstructor %>
+      <div class="card grey lighten-3">
+        <div class="card-action">
+          <!-- Note in class that message not consistent with activity -->
+          <%= link_to "Add a new camp instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+        </div>
+      </div>
+    <% end %>
   <% else %>
     <div class="card-content white-text">
       <span class="card-title">Camp Instructors</span>
@@ -10,16 +17,35 @@
         v-bind:camp_instructor='camp_instructor'
         class="no_bullet">  
       </ul>
+      <% if can? :new, CampInstructor %>
+        <div class="card-action">
+          <!-- Could bind title based on state, but chance to show v-else directive -->
+          <div v-if="modal_open">
+            <%= link_to "Cancel new camp instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+          </div>
+          <div v-else>
+            <%= link_to "Add a new camp instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+          </div>
+        </div>
+      <% end %>
       <!--<div class="card-action">-->
         <%# link_to "Add a new instructor", new_camp_instructor_path(camp_id: @camp.id) %>
       <!--</div>-->
     </div>
   <% end %>
+  
+  <div v-if="modal_open">
+    <new-instructor-form></new-instructor-form>
+  </div>
 </div>
 
 <script type="text/x-template" id="camp-instructor-row">
-  <tr>
-    <td>{{ camp_instructor.first_name + " " + camp_instructor.last_name }}</td>
-    <td v-on:click="remove_record(camp_instructor)">Delete</td>
-  </tr>
+  <li>
+    {{ camp_instructor.instructor_id }}
+    <a v-on:click="remove_record(camp_instructor)" class="remove">Delete</a>
+  </li>
+</script>
+
+<script type="text/x-template" id="instructor-form-template">
+  <%= render "camp_instructor_form_template", locals: {camp: @camp, camp_instructor: CampInstructor.new} %>
 </script>

@@ -42,7 +42,7 @@ class CampsController < ApplicationController
   end
   
   def instructors
-    @instructors = Instructor.for_camp(@camp).alphabetical
+    @camp_instructors = CampInstructor.where('camp_id = ?', @camp)
   end
 
   private
