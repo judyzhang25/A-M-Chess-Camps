@@ -4,8 +4,9 @@
 }
 
 .switch label input[type=checkbox]:checked + .lever::after {
-  background-color: #303F9F;
+  background-color: #2979ff;
 }
+
 
 /********** CARDS ********/
 .card a {
@@ -29,3 +30,16 @@
   background-color: #e53935;
   color: #fff;
 }
+
+/********** MODALS ********/
+.modal-content {
+  padding: 20px;
+}
+.modal-footer {
+  padding: 50px;
+}
+
+/********** CAROUSEL ********/
+// .carousel {
+//   padding-top: 0px;
+// }

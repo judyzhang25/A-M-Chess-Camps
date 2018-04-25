@@ -23,8 +23,14 @@
       <%= render :partial => "partials/nav_guest" %>
     <% end %>
     
+    <% if home_bool %>
+      <div class="parallax-container">
+        <div class="parallax"><%= image_tag 'chess.jpg' %></div>
+      </div>
+    <% end %>
+    
     <div class="row">
-      <div class="container" id="main_content">
+      <div class = "container" id="main_content">
         <%= render :partial => "partials/flash" %>
         <br></br>
         <%= yield %>
@@ -37,4 +43,39 @@
     </footer> 
     <%= javascript_include_tag "application" %>
   </body>
+  
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4>
+          <br />
+          <%= form_with url: sessions_path, local: true do |f| %>
+          <div class="control-group">
+            <%= f.label :username %>
+            <div class="controls">
+              <%= f.text_field :username %>
+            </div>
+          </div>
+    
+          <div class="control-group">
+            <%= f.label :password %>
+            <div class="controls">
+              <%= f.password_field :password %>
+            </div>
+          </div>
+          <div class="actions"><%= f.submit "Log In" %></div>
+          
+        <% end %>
+      <p>New? <a class="modal-trigger" href="#signup">Signup here</a></p>
+    </div>
+    
+  </div>
+  
+  <div id="signup" class="modal">
+    <div class="modal-content">
+      <h4>Create an account</h4>
+          <br />
+          <p>nothing yet</p>
+      <p>Have an account? <a class="modal-trigger" href="#login">Login here</a></p>
+    </div>
+  </div>
 </html>

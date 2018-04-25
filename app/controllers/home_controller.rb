@@ -1,4 +1,8 @@
 class HomeController < ApplicationController
+  def home_bool
+    true
+  end
+  
   def index
   end
 

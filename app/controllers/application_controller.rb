@@ -13,7 +13,17 @@ class ApplicationController < ActionController::Base
     redirect_to home_path
   end
   
+  rescue_from ActionController::RoutingError do |exception|
+    flash[:error] = "Page cannot be found."
+    redirect_to home_path
+  end
+  
   private
+  def home_bool
+    false
+  end
+  helper_method :home_bool
+  
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

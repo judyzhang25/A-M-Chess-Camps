@@ -29,3 +29,16 @@
 //     closeOnSelect: false // Close upon selecting a date,
 //   });
 // });
+
+$(document).ready(function(){
+    $('.modal').modal();
+});
+
+$('.carousel.carousel-slider').carousel({
+    fullWidth: true,
+    indicators: true
+});
+
+$(document).ready(function(){
+    $('.parallax').parallax();
+});
