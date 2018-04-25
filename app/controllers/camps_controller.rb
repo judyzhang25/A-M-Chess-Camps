@@ -42,7 +42,7 @@ class CampsController < ApplicationController
   end
   
   def instructors
-    @instructors = @camp.instructors.alphabetical
+    @instructors = Instructor.for_camp(@camp).alphabetical
   end
 
   private

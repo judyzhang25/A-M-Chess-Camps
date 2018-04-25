@@ -1,23 +1,25 @@
-<div class="card indigo lighten-2">
-  <div class="card-content white-text" id="camp_instructors_list">
-    <span class="card-title">Camp Instructors</span>
-	  <%# if @instructors.empty? %>
-		<!--<p>No instructors at this time</p>-->
-	  <%# else %>
-    <tr is='camp-instructor-row' 
-      v-for='camp_instructor in camp_instructors' 
-      v-bind:camp_instructor='camp_instructor'>  
-    </tr>
-    <%# end %>
-    <div class="card-action">
-    <%= link_to "Add a new instructor", new_camp_instructor_path(camp_id: @camp.id) %>
+<div class="card indigo lighten-2" id="camp_instructors_list">
+  <%= hidden_field_tag "camp_id", @camp.id %>
+  <% if @instructors.empty? %>
+    <p>empty</p>
+  <% else %>
+    <div class="card-content white-text">
+      <span class="card-title">Camp Instructors</span>
+      <ul is='camp-instructor-row' 
+        v-for='camp_instructor in camp_instructors' 
+        v-bind:camp_instructor='camp_instructor'
+        class="no_bullet">  
+      </ul>
+      <!--<div class="card-action">-->
+        <%# link_to "Add a new instructor", new_camp_instructor_path(camp_id: @camp.id) %>
+      <!--</div>-->
     </div>
-  </div>
+  <% end %>
 </div>
 
 <script type="text/x-template" id="camp-instructor-row">
   <tr>
-    <td>{{ camp_instructor.instructor_id }}</td>
+    <td>{{ camp_instructor.first_name + " " + camp_instructor.last_name }}</td>
     <td v-on:click="remove_record(camp_instructor)">Delete</td>
   </tr>
 </script>

@@ -1,4 +1,6 @@
 $(document).on('ready', function() {
+  
+//ajax function to handle transfer of data  
   function run_ajax(method, data, link, callback=function(res){camp_instructors.get_camp_instructors()}){
     $.ajax({
       method: method,
@@ -14,6 +16,7 @@ $(document).on('ready', function() {
     })
   }
   
+//vue component for creating the camp instructor list
    Vue.component('camp-instructor-row', {
     // Defining where to look for the HTML template in the index view
     template: '#camp-instructor-row',
@@ -25,20 +28,29 @@ $(document).on('ready', function() {
     // Behaviors associated with this component
     methods: {
       remove_record: function(camp_instructor){
-      },
+        run_ajax('DELETE', {camp_instructor: camp_instructor}, '/camp_instructors/'.concat(camp_instructor['id'], '.json'));       
+      }
     }
   })
-  
+
+//vue instance
+
   var camp_instructors = new Vue({
     el: '#camp_instructors_list',
     data: {
-      camp_instructors: []
+      camp_id: 0,
+      camp_instructors: [],
+      modal_open: false,
+      errors: {}
     },
     created() {
       this.camp_id = $('#camp_id').val();
     },
     
     methods: {
+      switch_modal: function(event){
+        this.modal_open = !(this.modal_open);
+      },
       get_camp_instructors: function(){
         run_ajax('GET', {}, '/camps/'.concat(this.camp_id, '/instructors.json'), function(res){camp_instructors.camp_instructors = res});
       }
