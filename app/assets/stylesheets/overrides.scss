@@ -39,7 +39,24 @@
   padding: 50px;
 }
 
-/********** CAROUSEL ********/
-// .carousel {
-//   padding-top: 0px;
+/********** PARALLAX ********/
+.parallax-container {
+  height: 350px;
+}
+
+/********** OVERALL *********/
+// #footer a {
+//   color: #5aaa95;
 // }
+
+// #body link_to {
+//   color: #5aaa95;
+// }
+
+html {
+  // Preloaded with four fonts; uncomment the one you prefer
+  // font-family: 'Nunito', sans-serif;
+  // font-family: 'Bitter', serif;
+  // font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Varela Round', sans-serif;
+}

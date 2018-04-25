@@ -1,4 +1,4 @@
-<div class="col s12 m6">
+<div class="col s12">
   <div class="card indigo lighten-2">
     <div class="card-content white-text">
       <span class="card-title">Registered Students</span>
@@ -6,17 +6,19 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Points Earned</th>
+          <!--<th>Points Earned</th>-->
+          <th>Family</th>
         </tr>
       </thead>
 
       <tbody>
-         @camp.registrations.each do |r| 
+        <% @camp.registrations.each do |r| %>
           <tr>
-            <td>r.student.proper_name</td>
-            <td>r.points_earned</td>
+            <td><%= link_to r.student.proper_name, r.student %></td>
+            <!--<td>< r.points_earned ></td>-->
+            <td><%= link_to r.student.family.family_name, r.student.family %></td>
           </tr>
-        end
+        <% end %>
       </tbody>
     </table>
     </div>

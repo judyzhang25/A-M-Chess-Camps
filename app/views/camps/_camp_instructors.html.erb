@@ -1,24 +1,23 @@
 <div class="card indigo lighten-2">
-  <div class="card-content white-text">
+  <div class="card-content white-text" id="camp_instructors_list">
     <span class="card-title">Camp Instructors</span>
-	  <% if @instructors.empty? %>
-		<p>No instructors at this time</p>
-	  <% else %>
-      <ul>
-        <% @instructors.each do |i| %>
-          <li>
-            <%= link_to(camp_instructor_path(id: camp_instructor_id_for(@camp, i)), method: :delete, class: 'remove') do %>
-              x&nbsp;&nbsp;
-            <% end %>
-            <%= link_to i.proper_name, instructor_path(i) %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+	  <%# if @instructors.empty? %>
+		<!--<p>No instructors at this time</p>-->
+	  <%# else %>
+    <tr is='camp-instructor-row' 
+      v-for='camp_instructor in camp_instructors' 
+      v-bind:camp_instructor='camp_instructor'>  
+    </tr>
+    <%# end %>
     <div class="card-action">
     <%= link_to "Add a new instructor", new_camp_instructor_path(camp_id: @camp.id) %>
     </div>
   </div>
 </div>
 
-
+<script type="text/x-template" id="camp-instructor-row">
+  <tr>
+    <td>{{ camp_instructor.instructor_id }}</td>
+    <td v-on:click="remove_record(camp_instructor)">Delete</td>
+  </tr>
+</script>

@@ -34,11 +34,11 @@ $(document).ready(function(){
     $('.modal').modal();
 });
 
-$('.carousel.carousel-slider').carousel({
-    fullWidth: true,
-    indicators: true
-});
-
 $(document).ready(function(){
     $('.parallax').parallax();
 });
+
+$(document).ready(function(){
+    $('.tabs').tabs();
+});
+     
