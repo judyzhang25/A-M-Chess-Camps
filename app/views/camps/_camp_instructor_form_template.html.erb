@@ -8,7 +8,7 @@
         <%= f.error_notification %>
           <div class="row">
           <div class="form-inputs">
-            <%= f.input :instructor_id, collection: Instructor.active.alphabetical.to_a, include_blank: true %>
+            <%= f.input :instructor_id, collection: Instructor.where('id NOT IN (?)', Instructor.for_camp(@camp).all.map(&:id)).active.alphabetical, include_blank: true %>
             <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
           </div>
         </div>

@@ -40,8 +40,9 @@
 
 <script type="text/x-template" id="camp-instructor-row">
   <li>
+    <a v-on:click="remove_record(camp_instructor)" class="remove">x&nbsp;&nbsp;</a>
     {{ camp_instructor.first_name + " " + camp_instructor.last_name }}
-    <a v-on:click="remove_record(camp_instructor)" class="remove">Delete</a>
+    
   </li>
 </script>
 
