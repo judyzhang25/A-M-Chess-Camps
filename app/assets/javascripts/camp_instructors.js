@@ -15,7 +15,7 @@ $(document).on('ready', function() {
         camp_instructors.errors = res.responseJSON;
         // Will update with an error handling function later
       }
-    })
+    });
   }
   
 //vue component for creating the camp instructor list
@@ -27,13 +27,21 @@ $(document).on('ready', function() {
     props: {
       camp_instructor: Object,
     },
+    data: function () {
+      return {
+        camp_id: 0
+      };
+    },
+    created() {
+      this.camp_id = $('#camp_id').val();
+    },
     // Behaviors associated with this component
     methods: {
       remove_record: function(camp_instructor){
-        run_ajax('DELETE', {camp_instructor: camp_instructor}, '/camp_instructors/'.concat(camp_instructor['id'], '.json'));       
+        run_ajax('DELETE', {camp_instructor: camp_instructor}, '/camps/'.concat(this.camp_id, '/instructors/', camp_instructor['id'], '.json'));
       }
     }
-  })
+  });
 
 //vue component for creating a new camp instructor
 
@@ -50,7 +58,7 @@ $(document).on('ready', function() {
           camp_id: 0,
           instructor_id: 0,
           errors: {}
-      }
+      };
     },
   
     methods: {
@@ -58,12 +66,12 @@ $(document).on('ready', function() {
         new_post = {
           camp_id: this.camp_id,
           instructor_id: this.instructor_id
-        }
+        };
         run_ajax('POST', {camp_instructor: new_post}, '/camp_instructors.json')
-        this.switch_modal()
+        this.switch_modal();
       }
     },
-  })
+  });
 
 //vue instance
 

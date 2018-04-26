@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   
   # Other custom routes
   get 'camps/:id/instructors', to: 'camps#instructors', as: :camp_instructors_for
+  post 'camps/:id/instructors', to: 'camp_instructors#create', as: :add_instructors
+  delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :camp_instructor_for
   
   # Routes for managing registrations
   get 'registrations/new', to: 'registrations#new', as: :new_registration
