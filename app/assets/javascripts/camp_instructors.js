@@ -42,7 +42,7 @@ $(document).on('ready', function() {
   
     mounted() {
       // need to reconnect the materialize select javascript 
-      $('#instructor_id').material_select()
+      $('#camp_instructor_instructor_id').material_select()
     },
   
     data: function () {
@@ -56,8 +56,8 @@ $(document).on('ready', function() {
     methods: {
       submitForm: function (x) {
         new_post = {
-          medicine_id: this.camp_id,
-          visit_id: this.instructor
+          camp_id: this.camp_id,
+          instructor_id: this.instructor_id
         }
         run_ajax('POST', {camp_instructor: new_post}, '/camp_instructors.json')
         this.switch_modal()
@@ -85,7 +85,7 @@ $(document).on('ready', function() {
       },
       get_camp_instructors: function(){
         run_ajax('GET', {}, '/camps/'.concat(this.camp_id, '/instructors.json'), function(res){camp_instructors.camp_instructors = res});
-      }
+      },
     },
     mounted: function(){
       this.get_camp_instructors();

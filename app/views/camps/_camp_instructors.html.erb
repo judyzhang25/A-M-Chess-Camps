@@ -1,8 +1,8 @@
-<div class="card indigo lighten-2" id="camp_instructors_list">
+<div id="camp_instructors_list">
   <%= hidden_field_tag "camp_id", @camp.id %>
   <% if @instructors.empty? %>
     <% if can? :new, CampInstructor %>
-      <div class="card grey lighten-3">
+      <div class="card indigo lighten-3">
         <div class="card-action">
           <!-- Note in class that message not consistent with activity -->
           <%= link_to "Add a new camp instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
@@ -10,27 +10,26 @@
       </div>
     <% end %>
   <% else %>
-    <div class="card-content white-text">
-      <span class="card-title">Camp Instructors</span>
-      <ul is='camp-instructor-row' 
-        v-for='camp_instructor in camp_instructors' 
-        v-bind:camp_instructor='camp_instructor'
-        class="no_bullet">  
-      </ul>
-      <% if can? :new, CampInstructor %>
-        <div class="card-action">
-          <!-- Could bind title based on state, but chance to show v-else directive -->
-          <div v-if="modal_open">
-            <%= link_to "Cancel new camp instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+    <div class="card indigo lighten-2" >
+      <div class="card-content white-text">
+        <span class="card-title">Camp Instructors</span>
+        <ul is='camp-instructor-row' 
+          v-for='camp_instructor in camp_instructors' 
+          v-bind:camp_instructor='camp_instructor'
+          class="no_bullet">  
+        </ul>
+        <% if can? :new, CampInstructor %>
+          <div class="card-action">
+            <!-- Could bind title based on state, but chance to show v-else directive -->
+            <div v-if="modal_open">
+              <%= link_to "Cancel new camp instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+            </div>
+            <div v-else>
+              <%= link_to "Add a new camp instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+            </div>
           </div>
-          <div v-else>
-            <%= link_to "Add a new camp instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
-          </div>
-        </div>
-      <% end %>
-      <!--<div class="card-action">-->
-        <%# link_to "Add a new instructor", new_camp_instructor_path(camp_id: @camp.id) %>
-      <!--</div>-->
+        <% end %>
+      </div>
     </div>
   <% end %>
   
@@ -41,7 +40,7 @@
 
 <script type="text/x-template" id="camp-instructor-row">
   <li>
-    {{ camp_instructor.instructor_id }}
+    {{ camp_instructor.first_name + " " + camp_instructor.last_name }}
     <a v-on:click="remove_record(camp_instructor)" class="remove">Delete</a>
   </li>
 </script>

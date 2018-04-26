@@ -1,4 +1,4 @@
-json.array!(@camp_instructors) do |ci|
-  json.extract! ci, :id, :instructor_id, :camp_id
-  json.url camp_instructor_url(ci, format: :json)
+json.array!(@camp_instructors) do |i|
+  json.extract! i, :id, :first_name, :last_name, :bio, :user_id, :active
+  json.url instructor_url(i, format: :json)
 end
