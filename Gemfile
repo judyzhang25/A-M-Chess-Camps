@@ -34,6 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'vuejs-rails'
 
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -82,6 +83,8 @@ gem 'materialize-sass', '0.100.2'
 gem 'materialize-form', '1.0.8'
 gem 'jquery-rails', '4.3.1'
 gem 'jquery-ui-rails', '6.0.1'
+gem 'momentjs-rails'
+gem 'fullcalendar'
 
 # Additional gems that are very useful in Rails development
 group :development do
