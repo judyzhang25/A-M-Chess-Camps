@@ -28,7 +28,7 @@ class FamiliesController < ApplicationController
     else
       @family.user_id = @user.id
       if @family.save
-        redirect_to family_path(@family), notice: "#{@family.name} was added to the system."
+        redirect_to family_path(@family), notice: "#{@family.family_name} was added to the system."
       else
         render action: 'new'
       end
@@ -55,10 +55,10 @@ class FamiliesController < ApplicationController
     end
 
     def family_params
-      params.require(:family).permit(:family_name, :parent_first_name, :active, :username, :password, :password_confirmation, :phone, :email)
+      params.require(:family).permit(:username, :password, :password_confirmation, :phone, :email, :family_name, :parent_first_name, :active)
     end
     
     def user_params
-      params.require(:owner).permit(:username, :password, :password_confirmation, :phone, :email)
+      params.require(:family).permit(:username, :password, :password_confirmation, :phone, :email, :active)
     end
 end

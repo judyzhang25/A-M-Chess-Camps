@@ -74,18 +74,7 @@
       <center><h4>Create an account</h4></center>
         <br />
         <% @family = Family.new %>
-        <%= simple_form_for @family do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :parent_first_name, label_html: { class: 'active' } %>
-          <%= f.input :family_name, label_html: { class: 'active' } %>
-          <%= f.input :email, label_html: { class: 'active' } %>
-          <%= f.input :phone, label_html: { class: 'active' } %>
-          <%= f.input :username, label_html: { class: 'active' } %>
-          <%= f.input :password, label_html: { class: 'active' } %>
-          <%= f.input :password_confirmation, label_html: { class: 'active' } %>
-          <%= f.input :active, as: :hidden, input_html: { value: true } %>
-          <%= f.button :submit, 'Register' %>
-        <% end %>
+        <%= render partial: "families/form", locals: {object: @family} %>
       <p>Have an account? <a class="modal-close modal-trigger" href="#login">Login here</a></p>
     </div>
   </div>
