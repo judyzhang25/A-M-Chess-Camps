@@ -45,36 +45,48 @@
   
   <div id="login" class="modal">
     <div class="modal-content">
-      <h4>Login</h4>
-          <br />
-          <%= form_with url: sessions_path, local: true do |f| %>
-          <div class="control-group">
-            <%= f.label :username %>
-            <div class="controls">
-              <%= f.text_field :username %>
-            </div>
+      <center><h4>Login</h4></center>
+        <br />
+        <%= form_with url: sessions_path, local: true do |f| %>
+        <div class="control-group">
+          <%= f.label :username %>
+          <div class="controls">
+            <%= f.text_field :username %>
           </div>
-    
-          <div class="control-group">
-            <%= f.label :password %>
-            <div class="controls">
-              <%= f.password_field :password %>
-            </div>
+        </div>
+  
+        <div class="control-group">
+          <%= f.label :password %>
+          <div class="controls">
+            <%= f.password_field :password %>
           </div>
-          <div class="actions"><%= f.submit "Log In" %></div>
-          
+        </div>
+        <div class="actions"><%= f.submit "Log In" %></div>
+        
         <% end %>
-      <p>New? <a class="modal-trigger" href="#signup">Signup here</a></p>
+      <p>New? <a class="modal-close modal-trigger" href="#signup">Signup here</a></p>
     </div>
     
   </div>
   
   <div id="signup" class="modal">
     <div class="modal-content">
-      <h4>Create an account</h4>
-          <br />
-          <p>nothing yet</p>
-      <p>Have an account? <a class="modal-trigger" href="#login">Login here</a></p>
+      <center><h4>Create an account</h4></center>
+        <br />
+        <% @family = Family.new %>
+        <%= simple_form_for @family do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :parent_first_name, label_html: { class: 'active' } %>
+          <%= f.input :family_name, label_html: { class: 'active' } %>
+          <%= f.input :email, label_html: { class: 'active' } %>
+          <%= f.input :phone, label_html: { class: 'active' } %>
+          <%= f.input :username, label_html: { class: 'active' } %>
+          <%= f.input :password, label_html: { class: 'active' } %>
+          <%= f.input :password_confirmation, label_html: { class: 'active' } %>
+          <%= f.input :active, as: :hidden, input_html: { value: true } %>
+          <%= f.button :submit, 'Register' %>
+        <% end %>
+      <p>Have an account? <a class="modal-close modal-trigger" href="#login">Login here</a></p>
     </div>
   </div>
 </html>
