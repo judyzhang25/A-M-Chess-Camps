@@ -2,10 +2,11 @@
 <div class="col s5">
   <div class="card">
     <div class="card-content">
+      <% @my_camps = current_role.registrations.limit(5) %>
       <span class="card-title" style="text-align:center;">Upcoming Camps</span>
       <table>
       <tbody>
-          <% current_role.registrations.each do |r| %>
+          <% @my_camps.each do |r| %>
             <tr>
               <p style="text-align:center;"><%= link_to r.camp.name, r.camp %><br>
               <%= link_to r.camp.location.name, r.camp.location %><br>

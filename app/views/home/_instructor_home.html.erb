@@ -2,10 +2,11 @@
 <div class="col s4">
   <div class="card">
     <div class="card-content">
-      <span class="card-title" style="text-align:center;">Upcoming Camps</span>
+      <% @my_camps = current_role.camps.upcoming.limit(5) %>
+      <span class="card-title" style="text-align:center;">Upcoming Camps</span><br>
       <table>
       <tbody>
-          <% current_role.camps.upcoming.each do |c| %>
+          <% @my_camps.each do |c| %>
             <tr>
               <p style="text-align:center;"><%= link_to c.name, c %><br>
               <%= link_to c.location.name, c.location %><br>

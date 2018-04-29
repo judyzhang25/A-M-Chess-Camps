@@ -29,15 +29,25 @@ class Ability
       
       #can see details of students attending their camps
       can :show, Student do |this_student|
-        my_students = user.instructor.camps.registrations.map(&:student_id)
-        my_students.include? this_student.id
+        instructor = Instructor.find_by(user_id: user.id)
+        camps = CampInstructor.where("instructor_id = ?", instructor.id)
+        camps.each do |c|
+          camp = Camp.find(c.camp_id)
+          students = camp.registrations.map(&:student_id)
+          students.include? this_student.id
+        end
       end
       
       #can see details of families of students attending their camps
       can :show, Family do |this_family|
-        students = user.instructor.camps.registrations.map(&:student)
-        families = students.map(&:family_id)
-        families.include? this_family.id
+        instructor = Instructor.find_by(user_id: user.id)
+        camps = CampInstructor.where("instructor_id = ?", instructor.id)
+        camps.each do |c|
+          camp = Camp.find(c.camp_id)
+          students = camp.registrations.map(&:student)
+          families = students.map(&:family_id)
+          families.include? this_family.id
+        end
       end
       
       can :instructors, Camp
@@ -56,8 +66,7 @@ class Ability
       #can read all information on curriculums and camps
       can :read, Curriculum
       can :read, Camp
-      can :read, Location
-      can :read, Instructor
+      can :show, Location
       
       #can manage all of their students
       can :manage, Student do |s|
