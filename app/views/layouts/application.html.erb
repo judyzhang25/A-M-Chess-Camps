@@ -30,6 +30,11 @@
     <% if home_bool %>
       <div class="parallax-container">
         <div class="parallax"><%= image_tag 'chess.jpg' %></div>
+        <% if logged_in? && current_user.role?(:parent) %>
+          <div class="center-align white-text absolute"><h4>Welcome <%= current_role.parent_first_name %> <%= current_role.family_name %></h4></div>
+        <% elsif logged_in? && (current_user.role?(:admin) || current_user.role?(:instructor)) %>
+          <div class="center-align white-text absolute"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
+        <% end %>
       </div>
     <% end %>
     

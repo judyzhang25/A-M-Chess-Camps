@@ -18,7 +18,6 @@
 //= require vue
 //= require moment 
 //= require fullcalendar
-//= require fullcalendar/gcal
 
 // $( document ).ready(function () {
 //     $('select').material_select();

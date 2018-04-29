@@ -1,1 +1,21 @@
-<p>Welcome parent</p>
+<div class="container col s8" id="calendar"></div>
+<div class="col s4">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title" style="text-align:center;">Upcoming Camps</span>
+      <table>
+      <tbody>
+          <% current_role.registrations.each do |r| %>
+            <tr>
+              <p style="text-align:center;"><%= link_to r.camp.name, r.camp %><br>
+              <%= link_to r.camp.location.name, r.camp.location %><br>
+              <%= r.camp.start_date.strftime("%m/%d/%y") %><br>
+              <%= r.camp.time_slot == "am" ? "Morning" : "Afternoon" %><br>
+              <%= r.student.proper_name %><br><br></p>
+            </tr>
+          <% end %>
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -28,6 +28,19 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   helper_method :current_user
+  
+  def current_role
+    if session[:user_id]
+      if current_user.role?(:admin) || current_user.role?(:instructor)
+        @current_role = Instructor.find_by(user_id: session[:user_id])
+      elsif current_user.role?(:parent)
+        @current_role = Family.find_by(user_id: session[:user_id])
+      else
+        @current_role = nil
+      end
+    end
+  end
+  helper_method :current_role
 
   def logged_in?
     current_user
