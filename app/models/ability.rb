@@ -55,6 +55,9 @@ class Ability
       can :read, Curriculum
       can :read, Camp
       
+      can :show, Location
+      can :show, Instructor
+      
       #can manage all of their students
       can :manage, Student do |s|
         s.family_id == user.family.id
@@ -75,6 +78,9 @@ class Ability
       #can read camp and curriculums but cannot see registration list only open slots
       can :read, Camp
       can :read, Curriculum
+      
+      can :show, Location
+      can :show, Instructor
       
       #can create new user/family accounts
       can :create, User

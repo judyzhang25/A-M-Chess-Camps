@@ -1,0 +1,12 @@
+<h3><%= @student.proper_name %></h3>
+
+<h5>Basic Information</h5>
+<p><strong>Name: </strong><%= @student.proper_name %></p>
+<p><strong>Date of Birth: </strong><%= @student.date_of_birth.strftime("%m/%d/%y") %></p>
+<p><strong>Rating: </strong><%= @student.rating %></p>
+<p><strong>Parent: </strong><%= link_to @student.family.parent_first_name + " " + @student.family.family_name, @student.family %></p>
+<p><strong>Phone: </strong><%= number_to_phone @student.family.phone %></p>
+<p><strong>Email: </strong><%= @student.family.email %></p>
+<p><strong>Active:</strong>
+  <%= @student.active ? "Yes" : "No" %>
+</p>
