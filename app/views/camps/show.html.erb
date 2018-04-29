@@ -4,7 +4,7 @@
   </div>
   <div class="col s5">
     <%= render :partial => "camp_instructors"%>
-    <% if logged_in? && current_user.role?(:admin) %>
+    <% if can? :show, Student%>
       <%= render :partial => "camp_students"%>
     <% end %>
   </div>

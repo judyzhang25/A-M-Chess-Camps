@@ -11,8 +11,8 @@ class Ability
     elsif user.role? :instructor
       #read any info in system related to curriculums, locations, or camps
       can :read, Curriculum
-      can :read, Location
       can :read, Camp
+      can :read, Location
       
       #can read their own profile
       can :show, User do |u|  
@@ -40,6 +40,8 @@ class Ability
         families.include? this_family.id
       end
       
+      can :instructors, Camp
+      
     elsif user.role? :parent
       #can read their own profile
       can :show, User do |u|
@@ -54,9 +56,8 @@ class Ability
       #can read all information on curriculums and camps
       can :read, Curriculum
       can :read, Camp
-      
-      can :show, Location
-      can :show, Instructor
+      can :read, Location
+      can :read, Instructor
       
       #can manage all of their students
       can :manage, Student do |s|
@@ -74,17 +75,18 @@ class Ability
       #details page.
       can :index, Registration
       
+      can :instructors, Camp
+      
     else
       #can read camp and curriculums but cannot see registration list only open slots
       can :read, Camp
       can :read, Curriculum
       
-      can :show, Location
-      can :show, Instructor
-      
       #can create new user/family accounts
       can :create, User
       can :create, Family
+      
+      can :instructors, Camp
     end
     #
     # The first argument to `can` is the action you are giving the user
