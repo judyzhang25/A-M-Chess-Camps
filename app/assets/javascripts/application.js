@@ -16,6 +16,9 @@
 //= require materialize-form
 //= require_tree .
 //= require vue
+//= require moment 
+//= require fullcalendar
+//= require fullcalendar/gcal
 
 // $( document ).ready(function () {
 //     $('select').material_select();
@@ -44,5 +47,14 @@ $(document).ready(function(){
 });
 
 $(document).ready(function() {
-  $("#calendar").fullcalendar();
+  $('#calendar').fullCalendar({
+      header: {
+        left: 'today',
+        center: 'title',
+        right: 'prev,next'
+      },
+      selectable: true,
+      events: '/camps.json',
+      eventLimit: true,
+  });
 });

@@ -83,8 +83,8 @@ gem 'materialize-sass', '0.100.2'
 gem 'materialize-form', '1.0.8'
 gem 'jquery-rails', '4.3.1'
 gem 'jquery-ui-rails', '6.0.1'
+gem 'fullcalendar-rails'
 gem 'momentjs-rails'
-gem 'fullcalendar'
 
 # Additional gems that are very useful in Rails development
 group :development do

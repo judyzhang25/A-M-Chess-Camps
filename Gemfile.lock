@@ -110,8 +110,10 @@ GEM
     faker (1.8.7)
       i18n (>= 0.7)
     ffi (1.9.21)
-    fullcalendar (3.9.0)
-      momentjs-rails (~> 2.20.1)
+    fullcalendar-rails (3.4.0.0)
+      jquery-rails (>= 4.0.5, < 5.0.0)
+      jquery-ui-rails (>= 5.0.2)
+      momentjs-rails (>= 2.9.0)
     gherkin (5.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -291,7 +293,7 @@ DEPENDENCIES
   database_cleaner (= 1.6.2)
   factory_bot_rails (= 4.8.2)
   faker (= 1.8.7)
-  fullcalendar
+  fullcalendar-rails
   hirb (= 0.7.3)
   jbuilder (~> 2.5)
   jquery-rails (= 4.3.1)
