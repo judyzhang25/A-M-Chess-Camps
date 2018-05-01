@@ -7,9 +7,11 @@
   </div>
 </div>
 <div class="row">
-  <div class="col s12">
-    <%= render :partial => "partials/object_options", locals: {model_name: "location", object: @location} %>
-  </div>
+  <% if can? :index, Location %>
+    <div class="col s12">
+      <%= render :partial => "partials/object_options", locals: {model_name: "location", object: @location} %>
+    </div>
+  <% end %>
 </div>
 <%# link_to 'Edit', edit_location_path(@location) %>
 <%# link_to 'Back', locations_path %>

@@ -30,24 +30,15 @@ class Ability
       #can see details of students attending their camps
       can :show, Student do |this_student|
         instructor = Instructor.find_by(user_id: user.id)
-        camps = CampInstructor.where("instructor_id = ?", instructor.id)
-        camps.each do |c|
-          camp = Camp.find(c.camp_id)
-          students = camp.registrations.map(&:student_id)
-          students.include? this_student.id
-        end
+        students = (instructor.camps.map { |c| c.students.map(&:id) }).flatten
+        students.include? this_student.id
       end
       
       #can see details of families of students attending their camps
       can :show, Family do |this_family|
         instructor = Instructor.find_by(user_id: user.id)
-        camps = CampInstructor.where("instructor_id = ?", instructor.id)
-        camps.each do |c|
-          camp = Camp.find(c.camp_id)
-          students = camp.registrations.map(&:student)
-          families = students.map(&:family_id)
-          families.include? this_family.id
-        end
+        families = (instructor.camps.map { |c| c.students.map(&:family) }).flatten
+        families.include? this_family
       end
       
       can :instructors, Camp
