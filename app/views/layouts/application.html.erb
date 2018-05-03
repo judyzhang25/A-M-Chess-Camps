@@ -10,7 +10,6 @@
     <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
     <%= csrf_meta_tags %>
   </head>
-
   <body>
 
     <% if logged_in? && current_user.role?(:admin) %>
@@ -22,6 +21,12 @@
     <% else %>
       <%= render :partial => "partials/nav_guest" %>
     <% end %>
+    
+    <ul id="parent_dropdown" class="dropdown-content">
+      <li><a href="#!">Manage Profile</a></li>
+      <li><a href="#!">Manage Students</a></li>
+      <li><a href="#!">Upcoming Camps</a></li>
+    </ul>
     
     <% if home_bool %>
       <div class="parallax-container">
@@ -83,4 +88,15 @@
       <p>Have an account? <a class="modal-close modal-trigger" href="#login">Login here</a></p>
     </div>
   </div>
+  
+  <div id="cart" class="modal">
+    <div class="modal-content">
+      <center><h4>Create an account</h4></center>
+        <br />
+        <% @family = Family.new %>
+        <%= render partial: "families/form", locals: {object: @family} %>
+      <p>Have an account? <a class="modal-close modal-trigger" href="#login">Login here</a></p>
+    </div>
+  </div>
+  
 </html>

@@ -2,6 +2,9 @@ if current_user.role?(:parent)
   json.array!(current_role.registrations) do |r|
     if r.camp.start_date >= Date.today
       json.extract! r, :id
+      if r.camp.time_slot == "am"
+        json.backgroundColor '#5aaa95'
+      end
       start_time = (r.camp.time_slot == "am") ? DateTime.new(r.camp.start_date.year, r.camp.start_date.month, r.camp.start_date.day, 9, 30) : DateTime.new(r.camp.start_date.year, r.camp.start_date.month, r.camp.start_date.day, 13, 30)
       end_time = (r.camp.time_slot == "am") ? DateTime.new(r.camp.end_date.year, r.camp.end_date.month, r.camp.end_date.day, 12, 30) : DateTime.new(r.camp.end_date.year, r.camp.end_date.month, r.camp.end_date.day, 16, 30)
       json.title r.camp.name
@@ -16,6 +19,7 @@ else
     if camp.time_slot == "am"
       start_time=DateTime.new(camp.start_date.year, camp.start_date.month, camp.start_date.day, 9, 30)
       end_time = DateTime.new(camp.end_date.year, camp.end_date.month, camp.end_date.day, 12, 30)
+      json.backgroundColor '#5aaa95'
     else
       start_time=DateTime.new(camp.start_date.year, camp.start_date.month, camp.start_date.day, 13, 30)
       end_time = DateTime.new(camp.end_date.year, camp.end_date.month, camp.end_date.day, 16, 30)

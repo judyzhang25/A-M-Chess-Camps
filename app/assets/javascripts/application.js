@@ -40,6 +40,8 @@ $(document).ready(function(){
     $('.parallax').parallax();
     $('.modal').modal();
     $(".button-collapse").sideNav();
+    $(".dropdown-trigger").dropdown();
+
 });
 $(document).ready(function() {
   $('#calendar').fullCalendar({

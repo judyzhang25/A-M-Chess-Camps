@@ -7,7 +7,7 @@
       <%= f.input :bio, label_html: { class: 'active' } %>
       <%= f.input :email, label_html: { class: 'active' } %>
       <%= f.input :phone, label_html: { class: 'active' } %>
-      <%= f.file_format :photo, :label => 'Instructor photo:', label_html: { class: 'active' } %>
+      <%= f.input :photo, input_type: 'file', label_html: { class: 'active' } %>
       <%= f.input :user_id, label_html: { class: 'active' } %>
       <%= f.input :active %>
     </div>
