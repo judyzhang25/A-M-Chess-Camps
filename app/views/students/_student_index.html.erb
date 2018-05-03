@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <% if @students.empty? %>
-  <h3>There are no students in the system at this time</h3>
+  <h4>There are no students in the system at this time</h4>
 <% else %>
   <h3>Students</h3>
 
@@ -30,7 +30,7 @@
 </table>
 
 <span class="paginate">
-  <%= will_paginate @students, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", :param_name => 'families' %>
+  <%= will_paginate @students, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next", :param_name => 'students' %>
 </span>
 
     <% end %>

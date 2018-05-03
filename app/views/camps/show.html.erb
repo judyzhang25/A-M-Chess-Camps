@@ -4,7 +4,7 @@
   </div>
   <div class="col s5">
     <%= render :partial => "camp_instructors"%>
-    <% if @instructors.include?(current_role) || @families.include?(current_role) %>
+    <% if current_user.role?(:admin) || @instructors.include?(current_role) || @families.include?(current_role) %>
       <%= render :partial => "camp_students"%>
     <% end %>
   </div>

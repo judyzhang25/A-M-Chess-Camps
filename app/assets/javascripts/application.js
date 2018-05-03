@@ -33,18 +33,14 @@
 //   });
 // });
 
-$(document).ready(function(){
-    $('.modal').modal();
-});
 
-$(document).ready(function(){
-    $('.parallax').parallax();
-});
 
 $(document).ready(function(){
     $('.tabs').tabs();
+    $('.parallax').parallax();
+    $('.modal').modal();
+    $(".button-collapse").sideNav();
 });
-
 $(document).ready(function() {
   $('#calendar').fullCalendar({
       header: {
@@ -56,4 +52,8 @@ $(document).ready(function() {
       events: '/camps.json',
       eventLimit: true,
   });
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.sidenav');
+//     var instances = M.Sidenav.init(elems, options);
+//   });
 });

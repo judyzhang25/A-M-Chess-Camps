@@ -61,7 +61,13 @@ class Ability
       
       #can manage all of their students
       can :manage, Student do |s|
-        s.family_id == user.family.id
+        family = Family.find_by(user_id: user.id)
+        s.family_id == family.id
+      end
+      
+      #can see own family page
+      can :show, Family do |f|
+        f == Family.find_by(user_id: user.id)
       end
 
       #can create new registrations for students in their family, but may not edit
