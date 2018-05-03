@@ -73,13 +73,10 @@ class Ability
       #can create new registrations for students in their family, but may not edit
       #or remove those registrations once payment is made.
       can :create, Registration
-      can :update, Registration, :payment => nil
-      can :destroy, Registration, :payment => nil
       
       #cannot view any information about students and families they are not
       #associated with, save for a list of registrered students on the camp
       #details page.
-      can :index, Registration
       
       can :instructors, Camp
       

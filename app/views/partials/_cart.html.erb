@@ -1,0 +1,22 @@
+<div id="my-cart">
+<% if session[:cart].empty? %>
+<p>Your cart is empty!</p>
+<% else %>
+  <ul is='item-row' 
+    v-for='item in items' 
+    v-bind:item='item'
+    class="no_bullet">  
+  </ul>
+<% end %>
+</div>
+
+<script type="text/x-template" id="item-row">
+  <li>
+    {{ item.camp_name }}
+    {{ item.student_name }}
+    {{ item.date.strftime("%m/%d/%y") }}
+    {{ item.cost }}
+    <a v-on:click="remove_record(camp_instructor)" class="remove">x&nbsp;&nbsp;</a>
+
+  </li>
+</script>

@@ -91,11 +91,8 @@
   
   <div id="cart" class="modal">
     <div class="modal-content">
-      <center><h4>Create an account</h4></center>
-        <br />
-        <% @family = Family.new %>
-        <%= render partial: "families/form", locals: {object: @family} %>
-      <p>Have an account? <a class="modal-close modal-trigger" href="#login">Login here</a></p>
+      <center><h4>My Cart</h4></center>
+      <%= render partial: "cart" %>
     </div>
   </div>
   
