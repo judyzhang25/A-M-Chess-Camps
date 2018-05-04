@@ -39,10 +39,20 @@ $(document).ready(function(){
     $('.tabs').tabs();
     $('.parallax').parallax();
     $('.modal').modal();
-    $(".button-collapse").sideNav();
-    $(".dropdown-trigger").dropdown();
+    $('.carousel.carousel-slider').carousel({
+      fullWidth: true,
+      indicators: true
+    });
+        
 
 });
+
+autoplay()   
+function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 8000);
+}
+
 $(document).ready(function() {
   $('#calendar').fullCalendar({
       header: {

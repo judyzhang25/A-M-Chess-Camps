@@ -18,6 +18,10 @@ class RegistrationsController < ApplicationController
     @registration.destroy
     redirect_to registrations_url, notice: "#{@registration.name} was removed."
   end
+  
+  def items
+    @items = session[:cart]
+  end
 
   private
     def set_registration
