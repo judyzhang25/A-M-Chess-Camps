@@ -40,6 +40,13 @@
   background-color: #e53935;
   color: #fff;
 }
+.btn {
+  background-color: #a9bcd0;
+}
+
+.btn:hover {
+  background-color: #8b9aab;
+}
 
 /********** MODALS ********/
 .modal-content {
@@ -100,4 +107,8 @@ html a {
 
 img {
   max-width: 100%;
+}
+
+.carousel-fixed-item {
+  font-family: 'Montserrat', sans-serif;
 }
