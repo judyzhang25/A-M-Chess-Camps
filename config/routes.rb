@@ -29,6 +29,12 @@ Rails.application.routes.draw do
   post 'camps/:id/instructors', to: 'camp_instructors#create', as: :add_instructors
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :camp_instructor_for
   
+  #cart
+  get 'carts', to: 'sessions#see_cart', as: :items
+  get 'carts', to: 'sessions#clear', as: :clear_items
+  post 'carts', to: 'sessions#add_item', as: :new_items
+  delete 'carts', to: "sessions#remove_item", as: :item
+  
   # Routes for managing registrations
   get 'registrations/new', to: 'registrations#new', as: :new_registration
   post 'registrations', to: 'registrations#create', as: :registrations
