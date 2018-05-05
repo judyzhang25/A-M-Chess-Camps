@@ -26,19 +26,17 @@ Rails.application.routes.draw do
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :camp_instructor_for
   
   # Routes for managing registrations
-  get 'registrations/new', to: 'registrations#new', as: :new_registration
-  post 'registrations', to: 'registrations#create', as: :registrations
-  delete 'registrations', to: 'registrations#destroy', as: :registration
+  # get 'registrations/new', to: 'registrations#new', as: :new_registration
+  # post 'registrations', to: 'registrations#add_item', as: :add_item #'registrations/:id/students/:student_id'
+  # delete 'registrations', to: 'registrations#destroy', as: :registration
+  
+  # #cart
+  # get 'cart', to: 'registrations#see_cart', as: :items
+  # delete 'cart', to: "registrations#remove_item", as: :item
   
   get 'camps/:id/students', to: 'camps#students', as: :camp_students
-  post 'camps/:id/students', to: 'sessions#add_item', as: :new_item
-  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_registration
-  
-  #cart
-  get 'carts', to: 'sessions#see_cart', as: :items
-  get 'carts', to: 'sessions#clear', as: :clear_items
-  post 'carts', to: 'sessions#add_item', as: :new_items
-  delete 'carts/:camp_id/:student_id', to: "sessions#remove_item", as: :item
+  post 'camps/:id/students', to: 'registrations#add_item', as: :registrations
+  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_item
   
   # Routs for managing users and sessions
   get 'user/edit' => 'users#edit', :as => :edit_current_user

@@ -11,6 +11,7 @@ class CampsController < ApplicationController
     @instructors = @camp.instructors.alphabetical
     @families = @camp.students.map(&:family)
     @students = @camp.students.alphabetical
+    @eligible_students = Student.all.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating))
   end
 
   def edit

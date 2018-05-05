@@ -1,0 +1,59 @@
+
+<div id="registrations">
+  <%= hidden_field_tag "camp_id", @camp.id %>
+  <% if @students.empty? %>
+    <% if logged_in? && current_user.role?(:parent) %>
+      <div class="card indigo lighten-3">
+        <div class="card-action">
+          <%= link_to "Add to Cart", "#", {%s(v-on:click) => "switch_modal()"} %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="card indigo lighten-2" >
+      <div class="card-content white-text">
+        <span class="card-title">Registered Students</span>
+        <% if current_user.role?(:admin) || @families.include?(current_role) || @instructors.include?(current_role) %>
+        <ul is='student-row' 
+          v-for='student in students' 
+          v-bind:student='student'
+          class="no_bullet">  
+        </ul>
+        <% end %>
+        <% if logged_in? && current_user.role?(:parent) %>
+          <div class="card-action">
+            <div v-if="modal_open">
+              <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
+            </div>
+            <div v-else>
+              <%= link_to "Add to Cart", "#", {%s(v-on:click) => "switch_modal()"} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <div v-if="modal_open">
+    <new-student-form></new-student-form>
+  </div>
+</div>
+
+<script type="text/x-template" id="student-row">
+  <li>
+    <% if logged_in? && current_user.role?(:admin) %>
+      <a v-on:click="remove_record(student)" class="remove">x&nbsp;&nbsp;</a>
+    <% end %>
+    <% if logged_in? && (current_user.role?(:admin) || @instructors.include?(current_role)) %>
+      <a v-on:click="link_to(student)">{{ student.first_name }}&nbsp;{{ student.last_name }}</a>
+    <% else %>
+      {{ student.first_name + " " + student.last_name }}
+    <% end %>
+    
+    
+  </li>
+</script>
+
+<script type="text/x-template" id="student-form-template">
+  <%= render "student_form_template", locals: {camp: @camp, eligible_students: @eligible_students} %>
+</script>

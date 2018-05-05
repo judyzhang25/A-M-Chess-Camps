@@ -42,6 +42,7 @@ class Ability
       end
       
       can :instructors, Camp
+      can :students, Camp
       
     elsif user.role? :parent
       #can read their own profile
@@ -79,6 +80,7 @@ class Ability
       #details page.
       
       can :instructors, Camp
+      can :students, Camp
       
     else
       #can read camp and curriculums but cannot see registration list only open slots
@@ -90,6 +92,7 @@ class Ability
       can :create, Family
       
       can :instructors, Camp
+      can :students, Camp
     end
     #
     # The first argument to `can` is the action you are giving the user

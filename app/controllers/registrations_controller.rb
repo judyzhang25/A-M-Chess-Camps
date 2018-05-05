@@ -1,5 +1,5 @@
 class RegistrationsController < ApplicationController
-  
+  include AppHelpers::Cart
   def new
   end
 
@@ -17,15 +17,41 @@ class RegistrationsController < ApplicationController
     camp_id = params[:id]
     student_id = params[:student_id]
     @registration = Registration.where(camp_id: camp_id, student_id: student_id)
-    redirect_to registrations_url, notice: "#{@registration.name} was removed."
     unless @registration.nil?
         @registration.destroy
         flash[:notice] = "Successfully removed this registration"
     end
   end
   
-  def items
+  def see_cart
     @items = session[:cart]
+    @total = calculate_total_cart_registration_cost
+  end
+  
+  def add_item
+    camp_id = params[:registration][:camp_id]
+    student_id = params[:registration][:student_id]
+    r = Registration.new(registration_params)
+    if r.valid?
+        add_registration_to_cart(camp_id, student_id)
+        camp = Camp.find(camp_id)
+        student = Student.find(student_id)
+        redirect_to camp_path(camp)
+        flash[:notice] = "#{camp.name} for #{student.first_name} was added to your cart!"
+    end
+  end
+  
+  def remove_item
+    camp_id = params[:id]
+    student_id = params[:student_id]
+    remove_registration_from_cart(:camp_id, :student_id)
+    camp = Camp.find(:camp_id)
+    student = Student.find(:student_id)
+    flash notice = "#{camp.name} for #{student.first_name} was removed from your cart."
+  end
+  
+  def clear
+    clear_cart
   end
 
   private

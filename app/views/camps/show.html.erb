@@ -4,10 +4,10 @@
   </div>
   <div class="col s5">
     <%= render :partial => "camp_instructors"%>
-    <% if current_user.role?(:admin) || @instructors.include?(current_role) || @families.include?(current_role) %>
-      <%= render :partial => "camp_students"%>
-    <% end %>
-    <%= render :partial => "add_to_cart" %>
+    <%# if current_user.role?(:admin) || @instructors.include?(current_role) || @families.include?(current_role) %>
+    <%= render :partial => "camp_students_vue"%>
+    <%# end %>
+    <%# render :partial => "add_to_cart" %>
     
   </div>
 </div>
