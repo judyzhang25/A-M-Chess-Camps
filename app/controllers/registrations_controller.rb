@@ -1,6 +1,4 @@
 class RegistrationsController < ApplicationController
-  before_action :set_registration, only: [:destroy]
-  authorize_resource
   
   def new
   end
@@ -15,8 +13,15 @@ class RegistrationsController < ApplicationController
   end
 
   def destroy
-    @registration.destroy
+    # @registration.destroy
+    camp_id = params[:id]
+    student_id = params[:student_id]
+    @registration = Registration.where(camp_id: camp_id, student_id: student_id)
     redirect_to registrations_url, notice: "#{@registration.name} was removed."
+    unless @registration.nil?
+        @registration.destroy
+        flash[:notice] = "Successfully removed this registration"
+    end
   end
   
   def items

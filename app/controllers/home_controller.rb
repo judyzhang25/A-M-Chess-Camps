@@ -24,7 +24,10 @@ class HomeController < ApplicationController
     end
   end
   
-  def dashboard
+  def dash
+    def home_bool
+      false
+    end
   end
   
 end

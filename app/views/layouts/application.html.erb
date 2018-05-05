@@ -22,12 +22,6 @@
       <%= render :partial => "partials/nav_guest" %>
     <% end %>
     
-    <ul id="parent_dropdown" class="dropdown-content">
-      <li><a href="#!">Manage Profile</a></li>
-      <li><a href="#!">Manage Students</a></li>
-      <li><a href="#!">Upcoming Camps</a></li>
-    </ul>
-    
     <% if home_bool %>
       <div class="carousel carousel-slider center" style="height:700px;">
         <div class="carousel-fixed-item center" style="font-family: 'Montserrat', sans-serif;">
@@ -36,15 +30,15 @@
           <% if logged_in? && current_user.role?(:parent) %>
             <div class="center-align white-text"><h3>Welcome <%= current_role.parent_first_name %> <%= current_role.family_name %></h3></div>
             <a class="btn waves-effect" href="/camps">Discover</a>
-            <a class="btn waves-effect">Upcoming</a>
+            <a class="btn waves-effect" href="/home/dash">Upcoming</a>
             <a class="btn waves-effect">Manage</a>
           <% elsif logged_in? && current_user.role?(:admin) %>
             <div class="center-align white-text"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
-            <a class="btn waves-effect">Upcoming</a>
+            <a class="btn waves-effect" href="/home/dash">Upcoming</a>
             <a class="btn waves-effect">Manage</a>
             <% elsif logged_in? && current_user.role?(:instructor) %>
             <div class="center-align white-text"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
-            <a class="btn waves-effect">Upcoming</a>
+            <a class="btn waves-effect" href="/home/dash">Upcoming</a>
           <% else %>
             <div class="center-align white-text"><h3>A&M Chess Camps</h3></div>
             <a class="btn waves-effect" href="/camps">Discover</a>
@@ -113,11 +107,13 @@
     </div>
   </div>
   
-  <div id="cart" class="modal">
-    <div class="modal-content">
-      <center><h4>My Cart</h4></center>
-      <%# render partial: "cart" %>
+  <% if logged_in? && current_user.role?(:parent) %>
+    <div id="cart" class="modal">
+      <div class="modal-content">
+        <center><h4>My Cart</h4></center>
+        <%= render partial: "partials/cart" %>
+      </div>
     </div>
-  </div>
+  <% end %>
   
 </html>

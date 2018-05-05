@@ -1,0 +1,22 @@
+<div id="my-cart">
+  <%= hidden_field_tag "camp_id", @camp.id %>
+  <div class="card indigo lighten-3">
+    <div class="card-action">
+      <!-- Could bind title based on state, but chance to show v-else directive -->
+      <div v-if="modal_open">
+        <%= link_to "Cancel order", "#", {%s(v-on:click) => "switch_modal()"} %>
+      </div>
+      <div v-else>
+        <%= link_to "Add to cart", "#", {%s(v-on:click) => "switch_modal()"} %>
+      </div>
+    </div>
+  </div>
+  
+  <div v-if="modal_open">
+    <new-item-form></new-item-form>
+  </div>
+</div>
+
+<script type="text/x-template" id="item-form-template">
+  <%= render "student_form_template", locals: {camp: @camp} %>
+</script>

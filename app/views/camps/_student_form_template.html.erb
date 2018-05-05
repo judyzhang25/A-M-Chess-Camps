@@ -1,0 +1,23 @@
+<div id="form-template">
+  <h5>New Enrollment</h5>
+  <% @item = Registration.new %>
+  <!-- now the form template itself -->
+  <div class="row">
+    <div class="col">
+      <%= simple_form_for(@item) do |f| %>
+        <%= f.error_notification %>
+          <div class="row">
+          <div class="form-inputs">
+            <%= f.input :student_id, collection: Student.all.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating)), include_blank: true %>
+            <%= f.input :camp_id, as: :hidden, input_html: { value: @camp.id } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-actions col s8">
+            <%= f.button :submit, "Add to cart" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

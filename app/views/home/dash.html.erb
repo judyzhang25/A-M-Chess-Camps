@@ -1,0 +1,7 @@
+<% if logged_in? && current_user.role?(:admin) %>
+  <%= render "admin_home" %>
+<% elsif logged_in? && current_user.role?(:instructor) %>
+  <%= render "instructor_home" %>
+<% elsif logged_in? && current_user.role?(:parent) %>
+  <%= render "parent_home" %>
+<% end %>

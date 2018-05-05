@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'home/contact', to: 'home#contact', as: :contact
   get 'home/privacy', to: 'home#privacy', as: :privacy
   get 'home/search', to: 'home#search', as: :search
+  get 'home/dash', to: 'home#dash', as: :dash
   root 'home#index'
 
   # Routes for main resources
@@ -18,27 +19,26 @@ Rails.application.routes.draw do
   resources :families
   resources :students
   resources :camp_instructors, :only => [:new, :create, :destroy]
-
-  # Routes for managing camp instructors
-  # get 'camp_instructors/new', to: 'camp_instructors#new', as: :new_camp_instructor
-  # post 'camp_instructors', to: 'camp_instructors#create', as: :camp_instructors
-  # delete 'camp_instructors', to: 'camp_instructors#destroy', as: :camp_instructor
   
   # Other custom routes
   get 'camps/:id/instructors', to: 'camps#instructors', as: :camp_instructors_for
   post 'camps/:id/instructors', to: 'camp_instructors#create', as: :add_instructors
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :camp_instructor_for
   
-  #cart
-  get 'carts', to: 'sessions#see_cart', as: :items
-  get 'carts', to: 'sessions#clear', as: :clear_items
-  post 'carts', to: 'sessions#add_item', as: :new_items
-  delete 'carts', to: "sessions#remove_item", as: :item
-  
   # Routes for managing registrations
   get 'registrations/new', to: 'registrations#new', as: :new_registration
   post 'registrations', to: 'registrations#create', as: :registrations
   delete 'registrations', to: 'registrations#destroy', as: :registration
+  
+  get 'camps/:id/students', to: 'camps#students', as: :camp_students
+  post 'camps/:id/students', to: 'sessions#add_item', as: :new_item
+  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_registration
+  
+  #cart
+  get 'carts', to: 'sessions#see_cart', as: :items
+  get 'carts', to: 'sessions#clear', as: :clear_items
+  post 'carts', to: 'sessions#add_item', as: :new_items
+  delete 'carts/:camp_id/:student_id', to: "sessions#remove_item", as: :item
   
   # Routs for managing users and sessions
   get 'user/edit' => 'users#edit', :as => :edit_current_user
