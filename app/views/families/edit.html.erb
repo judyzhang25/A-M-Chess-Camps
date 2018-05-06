@@ -2,5 +2,10 @@
 
 <%= render 'form', family: @family %>
 
-<%= link_to 'Show', @family %> |
+<%= link_to 'Show', @family %> 
+<% if current_role == @family %>
+| <%= link_to 'Back', "/home/dash#account" %>
+<% else %>
+|
 <%= link_to 'Back', families_path %>
+<% end %>

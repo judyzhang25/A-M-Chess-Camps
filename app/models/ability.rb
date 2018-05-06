@@ -70,6 +70,10 @@ class Ability
       can :show, Family do |f|
         f == Family.find_by(user_id: user.id)
       end
+      
+      can [:update, :edit], Family do |f|
+        f == Family.find_by(user_id: user.id)
+      end
 
       #can create new registrations for students in their family, but may not edit
       #or remove those registrations once payment is made.

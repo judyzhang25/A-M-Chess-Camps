@@ -1,5 +1,9 @@
 <h1>New Student</h1>
 
-<%= render 'form', student: @student %>
+<%= render 'form', locals: {student: @student} %>
 
-<%= link_to 'Back', students_path %>
+<% if current_user.role?(:parent) %>
+    <%= link_to 'Back', "/home/dash#account" %>
+<% else %>
+    <%= link_to 'Back', students_path %>
+<% end %>

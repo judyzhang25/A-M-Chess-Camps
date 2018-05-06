@@ -28,6 +28,7 @@ class HomeController < ApplicationController
     def home_bool
       false
     end
+    #admin
     Groupdate.time_zone = false
     @graph1 = Camp.joins(:registrations).joins(:curriculum).group(:name).count
     @max = Family.joins(:registrations).group(:family_name).size.max_by{|k,v| v}[1]
@@ -37,5 +38,11 @@ class HomeController < ApplicationController
     @graph2 = Camp.joins(:location).joins(:registrations).group(:name).count
     @graph3 = Camp.joins(:registrations).joins(:instructors).group(:first_name).count
     @graph4 = Camp.joins(:registrations).group_by_week(:start_date).count.sort_by{|x| x[1]}
+  
+    #family
+    @family = current_role
+    @students = current_role.students
+    @all_camps = current_role.registrations.upcoming.chronological
+    @my_camps = current_role.registrations.upcoming.chronological.limit(4)
   end
 end

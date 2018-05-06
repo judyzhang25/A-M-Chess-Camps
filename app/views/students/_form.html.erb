@@ -1,12 +1,17 @@
 <%= simple_form_for(@student) do |f| %>
   <%= f.error_notification %>
+  <% @family = Family.where(user_id: session[:user_id]) %>
   <div class="row">
     <div class="form-inputs">
       <%= f.input :first_name, label_html: { class: 'active' } %>
       <%= f.input :last_name, label_html: { class: 'active' } %>
       <%= f.input :date_of_birth, label_html: { class: 'active' } %>
       <%= f.input :rating, label_html: { class: 'active' } %>
-      <%= f.input :family_id, collection: Family.alphabetical.active.to_a, label_method: lambda {|t| t.family_name}, include_blank: true %>
+      <% if current_user.role?(:parent) %>
+        <%= f.input :family_id, as: :hidden, input_html: { value: @family.id }, include_blank: true %>
+      <% else %>
+        <%= f.input :family_id, collection: Family.alphabetical.active.to_a, label_method: lambda {|t| t.family_name}, include_blank: true %>
+      <% end %>
       <%= f.input :active %>
     </div>
   </div>

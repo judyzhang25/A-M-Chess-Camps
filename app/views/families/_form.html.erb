@@ -2,11 +2,17 @@
   <%= f.error_notification %>
   <div class="row">
     <div class="form-inputs">
-      <%= f.input :family_name, label_html: { class: 'active' } %>
-      <%= f.input :parent_first_name, label_html: { class: 'active' } %>
+      <% if current_role == @family %>
+        <%= f.input :family_name, as: :hidden, label_html: { class: 'active' } %>
+        <%= f.input :parent_first_name, as: :hidden, label_html: { class: 'active' } %>
+        <%= f.input :username, as: :hidden, label_html: { class: 'active' } %>
+      <% else %>
+        <%= f.input :family_name, label_html: { class: 'active' } %>
+        <%= f.input :parent_first_name, label_html: { class: 'active' } %>
+        <%= f.input :username, label_html: { class: 'active' } %>
+      <% end %>
       <%= f.input :email, label_html: { class: 'active' } %>
       <%= f.input :phone, label_html: { class: 'active' } %>
-      <%= f.input :username, label_html: { class: 'active' } %>
       <%= f.input :password, label_html: { class: 'active' } %>
       <%= f.input :password_confirmation, label_html: { class: 'active' } %>
       <%= f.input :active %>

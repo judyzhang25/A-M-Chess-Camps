@@ -12,7 +12,6 @@
       <div class="col s4">
         <div class="card">
           <div class="card-content">
-            <% @my_camps = current_role.registrations.upcoming.chronological.limit(4) %>
             <span class="card-title" style="text-align:center;">Upcoming Camps</span>
             <table>
             <tbody>
@@ -22,7 +21,7 @@
                     <%= link_to r.camp.location.name, r.camp.location %><br>
                     <%= r.camp.start_date.strftime("%m/%d/%y") %><br>
                     <%= r.camp.time_slot == "am" ? "Morning" : "Afternoon" %><br>
-                    <%= r.student.proper_name %><br><br></p>
+                    <%= link_to r.student.proper_name, r.student %><br><br></p>
                   </tr>
                 <% end %>
             </tbody>
@@ -33,13 +32,13 @@
   </div>
   
   <div id="upcoming" class="col s12 center">
-    <% @all_camps = current_role.registrations.upcoming.chronological %>
     <h4 id= "dash" ><br>My Upcoming Camps<br><br></h4><br>
     <table class="highlight">
     <tbody class="home">
         <thead>
           <tr>
             <th>Camp</th>
+            <th>Student</th>
             <th>Location</th>
             <th>Date</th>
             <th>Time_Slot</th>
@@ -49,6 +48,7 @@
           <% @all_camps.each do |r| %>
             <tr>
               <td><%= link_to r.camp.name, r.camp %></td>
+              <td><%= link_to r.student.proper_name, r.student %></td>
               <td><%= link_to r.camp.location.name, r.camp.location %></td>
               <td><%= r.camp.start_date.strftime("%m/%d/%y") %></td>
               <td><%= r.camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
@@ -62,7 +62,61 @@
   <div id="account">
     <br><br>
     <h4 class="center" id= "dash"><br>My Account<br><br></h4><br>
-    <p>hi</p>
+    <div class="row">
+      <div class="card center">
+        <div class="card-content">
+          <h3><%= @family.family_name %> <%= link_to edit_family_path(@family) do %>
+            <i class="material-icons">edit</i>
+          <% end %></h3>
+    
+          <h5>Basic Information</h5>
+          <p><strong>Parent: </strong><%= @family.parent_first_name %></p>
+          <p><strong>Email: </strong><%= @family.email %></p>
+          <p><strong>Phone: </strong><%= number_to_phone @family.phone %></p>
+          <p><strong>Active:</strong>
+            <%= @family.active ? "Yes" : "No" %>
+          </p>  
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h4>My Students</h4>
+
+      <table class="highlight">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Rating</th>
+          <th>Registrations</th>
+          <th>Active</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @students.each do |student| %>
+          <tr>
+            <td><%= link_to student.proper_name, student %></td>
+            <td><%= student.age %></td>
+            <td><%= (student.rating==0) ? "Unrated" : student.rating %></td>
+            <td><%= student.registrations.size %></td>
+            <td><%= student.active ? "Yes" : "No" %></td>
+            <td>
+              <%= link_to edit_student_path(student) do %>
+                <i class="material-icons">edit</i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+      </table>
+    </div>
+    <%= link_to(new_student_path, class: "btn waves-effect waves-light") do %>
+      Add a New Student
+    <% end %>
+    
 
   </div>
 </div>

@@ -2,5 +2,11 @@
 
 <%= render 'form', student: @student %>
 
-<%= link_to 'Show', @student %> |
+<%= link_to 'Show', @student %> 
+<%= link_to 'Show', @family %> 
+<% if current_user.role?(:parent) %>
+| <%= link_to 'Back', "/home/dash#account" %>
+<% else %>
+|
 <%= link_to 'Back', students_path %>
+<% end %>
