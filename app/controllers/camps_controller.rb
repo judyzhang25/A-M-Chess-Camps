@@ -5,6 +5,9 @@ class CampsController < ApplicationController
   def index
     @active_camps = Camp.all.active.chronological.paginate(:page => params[:active_camps]).per_page(10)
     @inactive_camps = Camp.all.inactive.chronological.paginate(:page => params[:inactive_camps]).per_page(1)
+    @camp1 = Curriculum.where(name: "Principles of Chess")
+    @camp2 = Curriculum.where(name: "Endgame Principles")
+    @camp3 = Curriculum.where(name: "Mastering Chess Tactics")
   end
 
   def show

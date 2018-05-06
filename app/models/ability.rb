@@ -23,6 +23,14 @@ class Ability
       can :update, User do |u|  
         u.id == user.id
       end
+      can [:update, :edit], Instructor do |i|
+        i == Instructor.find_by(user_id: user.id)
+      end
+      
+      #can see own page
+      can :show, Instructor do |f|
+        f == Instructor.find_by(user_id: user.id)
+      end
       
       #can see list of all students in their camps
       can :index, Student

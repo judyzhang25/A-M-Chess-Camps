@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col s4">
     <div class="card">
-      <div class="card-image">
-        <%= image_tag 'camp.jpg' %>
+      <div class="card-image" >
+        <%= link_to "#{image_tag ("camp.jpg")}".html_safe, curriculum_path(@camp1) %>
         <span class="card-title">Principles of Chess</span>
       </div>
     </div>
@@ -10,7 +10,7 @@
   <div class="col s4">
     <div class="card">
       <div class="card-image">
-        <%= image_tag 'camp1.jpg' %>
+        <%= link_to "#{image_tag ("camp1.jpg")}".html_safe, curriculum_path(@camp2) %>
         <span class="card-title">Endgame Principles</span>
       </div>
     </div>
@@ -18,7 +18,7 @@
   <div class="col s4">
     <div class="card">
       <div class="card-image">
-        <%= image_tag 'camp2.jpg' %>
+        <%= link_to "#{image_tag ("camp2.jpg")}".html_safe, curriculum_path(@camp3) %>
         <span class="card-title">Mastering Chess Tactics</span>
       </div>
     </div>

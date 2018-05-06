@@ -2,7 +2,7 @@
 
   <div class= "col s12">
   <p id="notice"><%= notice %></p>
-  <h4><%= state %> Locations</h4>
+  <h4 id= "headline" class="center"><br><%= state %> Locations<br><br></h4><br>
 
   <table class="highlight">
     <thead>
@@ -10,7 +10,9 @@
         <th>Name</th>
         <th>Address</th>
         <th>Max Capacity</th>
+        <% if can? :update, Location %>
         <th colspan="3"></th>
+        <% end %>
       </tr>
     </thead>
 
@@ -21,8 +23,10 @@
           <td><%= render :partial => "partials/address_info", locals: {location: location} %></td>
           <td><%= location.max_capacity %></td>
           <td>
+            <% if can? :update, Location %>
             <%= link_to edit_location_path(location) do %>
               <i class="material-icons">edit</i>
+            <% end %>
             <% end %>
           </td>
         </tr>

@@ -1,10 +1,11 @@
 <div class="row">
+  <h4 id= "headline" class="center"><br><%= @camp.name %><br><br></h4><br>
   <div class="col s7">
     <%= render :partial => "camp_details" %>
   </div>
   <div class="col s5">
     <%= render :partial => "camp_instructors"%>
-    <% if logged_in? %>
+    <% if logged_in? && !current_user.role?(:instructor)%>
       <%= render :partial => "camp_students_vue"%>
     <% end %>
     
@@ -12,7 +13,9 @@
 </div>
 <div class="row">
   <div class="col s12">
-    <%= render :partial => "partials/object_options", locals: {model_name: "camp", object: @camp} %>
+    <% if logged_in? %>
+      <%= render :partial => "partials/object_options", locals: {model_name: "camp", object: @camp} %>
+    <% end %>
   </div>
 </div>
 

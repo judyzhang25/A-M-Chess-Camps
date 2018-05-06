@@ -2,7 +2,7 @@
 <center><p>Your cart is empty!</p>
 <a class="btn waves-effect" href="/camps">Add Camps</a></center>
 <% else %>
-  <h4>My Cart</h4>
+  <h4 id= "checkout" class="center"><br>Order Details<br><br></h4><br>
   <div class="col s7">
   <table class="center">
     <thead>
@@ -26,13 +26,13 @@
         </tr>
       <% end %>
     </tbody>
-  </table>
+  </table><br>
   <h5>Total: $<%= @total %></h5>
   </div>
   
   
   <div class="col s5">
-      <div class='card-wrapper'></div>
+      <div class='card-wrapper'></div><br><br>
       
       <form action="/see_cart" method="post">
         <div class="row">
@@ -51,7 +51,7 @@
             <input placeholder="CVC" type="text" name="cvc" required>
           </div>
           <div class="col s6">
-            <input type="submit" value="Submit" class="btn">
+            <input type="submit" value="Submit" class="btn" onclick="return confirm('Are you sure?')">
           </div>
         </div>
         <div class="row">

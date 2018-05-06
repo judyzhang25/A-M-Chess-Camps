@@ -1,4 +1,5 @@
 <div class="row">
+  <h4 id= "headline" class="center"><br><%= @location.name %><br><br></h4><br>
   <div class="col s5">
     <%= render :partial => "location_details" %>
   </div>
@@ -9,8 +10,9 @@
 <div class="row">
   <% if can? :index, Location %>
     <div class="col s12">
-      <%= render :partial => "partials/object_options", locals: {model_name: "location", object: @location} %>
-
+      <% if logged_in? %>
+        <%= render :partial => "partials/object_options", locals: {model_name: "location", object: @location} %>
+      <% end %>
     </div>
   <% end %>
 </div>

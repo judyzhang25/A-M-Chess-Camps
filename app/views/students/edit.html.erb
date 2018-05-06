@@ -1,9 +1,7 @@
-<h1>Editing Student</h1>
-
+<h4 id= "headline" class="center"><br>Editing Student<br><br></h4><br>
 <%= render 'form', student: @student %>
 
 <%= link_to 'Show', @student %> 
-<%= link_to 'Show', @family %> 
 <% if current_user.role?(:parent) %>
 | <%= link_to 'Back', "/home/dash#account" %>
 <% else %>

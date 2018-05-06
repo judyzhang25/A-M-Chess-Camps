@@ -33,15 +33,17 @@
             <div class="center-align white-text"><h3>Welcome <%= current_role.parent_first_name %> <%= current_role.family_name %></h3></div>
             <a class="btn waves-effect" href="/camps">Discover</a>
             <a class="btn waves-effect" href="/home/dash">Upcoming</a>
-            <a class="btn waves-effect">Manage</a>
+            <a class="btn waves-effect" href="/home/dash#account">Manage</a>
           <% elsif logged_in? && current_user.role?(:admin) %>
             <div class="center-align white-text"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
             <a class="btn waves-effect" href="/home/dash">Agenda</a>
             <a class="btn waves-effect" href="/home/dash#upcoming">Upcoming</a>
+            <a class="btn waves-effect" href="/home/dash#account">Manage</a>
             <a class="btn waves-effect" href="/home/dash#stats">Statistics</a>
             <% elsif logged_in? && current_user.role?(:instructor) %>
             <div class="center-align white-text"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
             <a class="btn waves-effect" href="/home/dash">Upcoming</a>
+            <a class="btn waves-effect" href="/home/dash#account">Manage</a>
           <% else %>
             <div class="center-align white-text"><h3>A&M Chess Camps</h3></div>
             <a class="btn waves-effect" href="/camps">Discover</a>
@@ -76,7 +78,7 @@
   
   <div id="login" class="modal">
     <div class="modal-content">
-      <center><h4>Login</h4></center>
+      <h4 id= "headline" class="center"><br>Login<br><br></h4><br>
         <br />
         <%= form_with url: sessions_path, local: true do |f| %>
         <div class="control-group">
@@ -102,7 +104,7 @@
   
   <div id="signup" class="modal">
     <div class="modal-content">
-      <center><h4>Create an account</h4></center>
+      <h4 id= "headline" class="center"><br>Create an Account<br><br></h4><br>
         <br />
         <% @family = Family.new %>
         <%= render partial: "families/form", locals: {object: @family} %>

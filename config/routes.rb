@@ -27,14 +27,13 @@ Rails.application.routes.draw do
   
   # Routes for managing registrations
   # get 'registrations/new', to: 'registrations#new', as: :new_registration
-  # post 'registrations', to: 'registrations#add_item', as: :add_item #'registrations/:id/students/:student_id'
+  # post 'registrations', to: 'registrations#create', as: :create_registration
   # delete 'registrations', to: 'registrations#destroy', as: :registration
   
   # #cart
   get 'see_cart', to: 'registrations#see_cart', as: :items
   post 'see_cart', to: 'registrations#checkout', as: :checkout
-  # delete 'cart', to: "registrations#remove_item", as: :item
-  
+
   get 'camps/:id/students', to: 'camps#students', as: :camp_students
   post 'camps/:id/students', to: 'registrations#add_item', as: :registrations
   get 'camps/:id/students/:student_id', to: 'registrations#remove_item', as: :remove_item
@@ -42,7 +41,6 @@ Rails.application.routes.draw do
   
   
   # Routs for managing users and sessions
-  get 'user/edit' => 'users#edit', :as => :edit_current_user
   get 'signup' => 'users#new', :as => :signup
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout

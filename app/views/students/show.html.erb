@@ -1,4 +1,5 @@
 <div class="row">
+  <h4 id= "headline" class="center"><br><%= @student.proper_name %><br><br></h4><br>
   <div class="col s5">
     <%= render :partial => "student_details" %>
   </div>
@@ -9,7 +10,9 @@
 </div>
 <div class="row">
   <div class="col s12">
-    <%= render :partial => "partials/object_options", locals: {model_name: "student", object: @student} %>
+    <% if logged_in? %>
+      <%= render :partial => "partials/object_options", locals: {model_name: "student", object: @student} %>
+    <% end %>
   </div>
 </div>
 

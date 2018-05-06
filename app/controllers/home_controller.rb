@@ -41,8 +41,14 @@ class HomeController < ApplicationController
   
     #family
     @family = current_role
-    @students = current_role.students
-    @all_camps = current_role.registrations.upcoming.chronological
-    @my_camps = current_role.registrations.upcoming.chronological.limit(4)
+    @instructor = current_role
+    if current_user.role?(:parent)
+      @students = current_role.students
+      @all_camps = current_role.registrations.upcoming.chronological
+      @my_camps = current_role.registrations.upcoming.chronological.limit(4)
+    else
+      @all_camps = current_role.camps.upcoming
+      @my_camps = current_role.camps.upcoming.limit(5)
+    end
   end
 end

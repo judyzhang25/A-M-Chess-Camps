@@ -12,10 +12,12 @@ class StudentsController < ApplicationController
   end
 
   def edit
+    @family = current_role
   end
 
   def new
     @student = Student.new
+    @family = current_role
   end
 
   def create

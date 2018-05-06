@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col s12 center">
     <ul class="tabs">
-      <li class="tab col s2 offset-s3"><a href="#cal">Agenda</a></li>
+      <li class="tab col s2 offset-s2"><a href="#cal">Agenda</a></li>
       <li class="tab col s2"><a href="#upcoming">Upcoming</a></li>
+      <li class="tab col s2"><a href="#account">Manage</a></li>
       <li class="tab col s2"><a href="#stats">Statistics</a></li>
     </ul>
   </div>
@@ -12,13 +13,12 @@
     <div class="col s4">
       <div class="card">
         <div class="card-content">
-          <% @my_camps = current_role.camps.upcoming.limit(5) %>
-          <span class="card-title" style="text-align:center;">Upcoming Camps</span><br>
+          <span class="card-title" style="text-align:center;">Upcoming Camps</span>
           <table class="highlight">
           <tbody class="home">
               <% @my_camps.each do |c| %>
                 <tr>
-                  <p style="text-align:center;"><%= link_to c.name, c %><br>
+                  <br><p style="text-align:center;"><%= link_to c.name, c %><br>
                   <%= link_to c.location.name, c.location %><br>
                   <%= c.start_date.strftime("%m/%d/%y") %><br>
                   <%= c.time_slot == "am" ? "Morning" : "Afternoon" %><br></p>
@@ -41,7 +41,8 @@
             <th>Camp</th>
             <th>Location</th>
             <th>Date</th>
-            <th>Time_Slot</th>
+            <th>Enrollments</th>
+            <th>Time Slot</th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +51,7 @@
               <td><%= link_to c.name, c %></td>
               <td><%= link_to c.location.name, c.location %></td>
               <td><%= c.start_date.strftime("%m/%d/%y") %></td>
+              <td><%= c.enrollment %></td>
               <td><%= c.time_slot == "am" ? "Morning" : "Afternoon" %></td>
             </tr>
           <% end %>
@@ -57,6 +59,31 @@
         
     </tbody>
     </table>
+  </div>
+  <div id="account">
+    <br><br>
+    <h4 class="center" id= "dash"><br>My Account<br><br></h4><br>
+    <div class="row">
+      <div class="card center">
+        <div class="card-content">
+          <h4><%= @instructor.proper_name %> <%= link_to edit_instructor_path(@instructor) do %>
+            <i class="material-icons">edit</i>
+          <% end %></h4>
+    
+          <h5>Basic Information</h5>
+          <% unless @instructor.photo_url.nil? %>
+          <p class="instructor_image"><%= image_tag @instructor.photo_url %></p>
+          <% end %>
+          <p><strong>Bio: </strong><%= @instructor.bio %></p>
+          <p><strong>Email: </strong><%= @instructor.email %></p>
+          <p><strong>Phone: </strong><%= number_to_phone @instructor.phone %></p>
+          <p><strong>Active:</strong>
+            <%= @instructor.active ? "Yes" : "No" %>
+          </p>
+          
+        </div>
+      </div>
+    </div>
   </div>
   <div id="stats">
     <br><br>
