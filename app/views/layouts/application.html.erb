@@ -36,8 +36,9 @@
             <a class="btn waves-effect">Manage</a>
           <% elsif logged_in? && current_user.role?(:admin) %>
             <div class="center-align white-text"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
-            <a class="btn waves-effect" href="/home/dash">Upcoming</a>
-            <a class="btn waves-effect" href="/home/dash#upcoming">Manage</a>
+            <a class="btn waves-effect" href="/home/dash">Agenda</a>
+            <a class="btn waves-effect" href="/home/dash#upcoming">Upcoming</a>
+            <a class="btn waves-effect" href="/home/dash#stats">Statistics</a>
             <% elsif logged_in? && current_user.role?(:instructor) %>
             <div class="center-align white-text"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
             <a class="btn waves-effect" href="/home/dash">Upcoming</a>

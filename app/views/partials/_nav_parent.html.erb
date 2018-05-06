@@ -6,6 +6,7 @@
       &nbsp&nbsp
       <a href="/" class="brand-logo">A&M</a>
       <ul class="right">
+        <li><%= link_to "Dashboard", dash_path %></li>
         <li><%= link_to "Curriculums", curriculums_path %></li>
         <li><%= link_to "Camps", camps_path %></li>
         <li><a href="/see_cart">My Cart<span class="new badge" data-badge-caption="items" style="background-color: #a9bcd0;"><%= session[:cart].size() %></span></a></li>

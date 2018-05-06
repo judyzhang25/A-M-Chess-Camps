@@ -5,7 +5,7 @@
 <% else %>
   <h4>Families</h4>
 
-  <table>
+  <table class="highlight">
   <thead>
     <tr>
       <th>Name</th>
@@ -25,7 +25,11 @@
         <td><%= number_to_phone family.phone %></td>
         <td><%= family.students.size %></td>
         <td><%= family.registrations.size %></td>
-        <td><%= link_to 'Edit', edit_family_path(family), :class=>"btn waves-effect waves-light blue" %></td>
+        <td>
+          <%= link_to edit_family_path(family) do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

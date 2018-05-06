@@ -7,14 +7,14 @@
     </ul>
   </div>
   <div id="cal" class="container col s12">
-    <br><br><br>
+    <h4 id= "dash" class="center"><br>My Agenda<br><br></h4><br>
     <div class="container col s8" id="calendar"></div>
     <div class="col s4">
       <div class="card">
         <div class="card-content">
           <% @my_camps = current_role.camps.upcoming.limit(5) %>
           <span class="card-title" style="text-align:center;">Upcoming Camps</span><br>
-          <table>
+          <table class="highlight">
           <tbody class="home">
               <% @my_camps.each do |c| %>
                 <tr>
@@ -33,8 +33,8 @@
   
   <div id="upcoming" class="col s12 center">
     <% @all_camps = current_role.camps.upcoming %>
-    <h4>Upcoming Camps</h4><br>
-    <table>
+    <h4 id= "dash" ><br>My Upcoming Camps<br><br></h4><br>
+    <table class="highlight">
     <tbody class="home">
         <thead>
           <tr>
@@ -59,13 +59,99 @@
     </table>
   </div>
   <div id="stats">
-    <%= high_chart("my_id2", @chart2) %>
-    <%= high_chart("my_id3", @chart3) do |c| %>
-          <%= raw "options.tooltip.formatter = function() {return '<b> YUPI!! '+ this.point.name +'</b>: '+ this.y +' %';}"  %>
-          <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
-      <% end %>
+    <br><br>
+    <h4 class="center" id= "dash"><br>Program Statistics<br><br></h4><br>
+    <div class="row">
+      <div class="container col s7">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title center">Registration by Curriculum</span><br>
+            <%= pie_chart @graph1, legend: "bottom", donut: true, messages: {empty: "No registrations at this time"} %>
+          </div>
+        </div>
+      </div>
+      <div class="container col s5">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title center">Registration by Location</span><br>
+            <%= column_chart @graph2, xtitle: "Locations", ytitle: "Registrations", messages: {empty: "No registrations at this time"} %>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="container col s6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title center">Registration by Instructor</span><br>
+            <%= column_chart @graph3, xtitle: "Instructors", ytitle: "Registrations", messages: {empty: "No registrations at this time"} %>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title center">Registration by Camp Week</span><br>
+            <%= area_chart @graph4, xtitle: "Week", ytitle: "Registrations", curve: false, colors: ["#5aaa95"], messages: {empty: "No registrations at this time"} %>
+          </div>
+        </div>
+      </div>
     
-    <%= high_chart("my_id4", @chart4) %>
+      <div class="container col s3">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title center">Worst Customers</span><br>
+            <% if @min_fams.nil? || @min_fams.empty? %>
+              <p>No families in the system at this time.</p>
+            <% else %>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Family Name</th>
+                    <th>Registrations</th>
+                  </tr>
+                </thead>
+                <tbody class="highlight">
+                <% @min_fams.each do |f| %>
+                  <tr>
+                    <td><%=link_to f[0], Family.find_by(family_name: f[0]) %></td>
+                    <td><%= f[1] %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="container col s3">
+        <div class="card">
+        <div class="card-content">
+          <span class="card-title center">Best Customers</span><br>
+          <% if @max_fams.nil? || @max_fams.empty? %>
+            <p>No families in the system at this time.</p>
+          <% else %>
+            <table>
+              <thead>
+                <tr>
+                  <th>Family Name</th>
+                  <th>Registrations</th>
+                </tr>
+              </thead>
+              <tbody class="highlight">
+              <% @max_fams.each do |f| %>
+                <tr>
+                  <td><%=link_to f[0], Family.find_by(family_name: f[0]) %></td>
+                  <td><%= f[1] %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 

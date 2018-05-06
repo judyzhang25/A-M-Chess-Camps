@@ -25,6 +25,8 @@ class Registration < ApplicationRecord
   # scopes
   scope :for_camp, ->(camp_id) { where(camp_id: camp_id) }
   scope :alphabetical, -> { joins(:student).order('students.last_name, students.first_name') }
+  scope :chronological, -> { joins(:camp).order('camps.start_date') }
+  scope :upcoming, -> { joins(:camp).where('camps.start_date >= ?', Date.today) }
 
   # other methods
   def pay
