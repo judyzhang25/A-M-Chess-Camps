@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20180503024005) do
   create_table "camp_instructors", force: :cascade do |t|
     t.integer "camp_id"
     t.integer "instructor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["camp_id"], name: "index_camp_instructors_on_camp_id"
     t.index ["instructor_id"], name: "index_camp_instructors_on_instructor_id"
   end
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 20180503024005) do
     t.string "time_slot"
     t.integer "max_students"
     t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["curriculum_id"], name: "index_camps_on_curriculum_id"
     t.index ["location_id"], name: "index_camps_on_location_id"
   end
@@ -38,6 +42,8 @@ ActiveRecord::Schema.define(version: 20180503024005) do
     t.integer "min_rating"
     t.integer "max_rating"
     t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "families", force: :cascade do |t|
@@ -45,6 +51,8 @@ ActiveRecord::Schema.define(version: 20180503024005) do
     t.string "parent_first_name"
     t.integer "user_id"
     t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_families_on_user_id"
   end
 
@@ -54,6 +62,8 @@ ActiveRecord::Schema.define(version: 20180503024005) do
     t.text "bio"
     t.integer "user_id"
     t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "photo"
     t.index ["user_id"], name: "index_instructors_on_user_id"
   end
@@ -67,12 +77,16 @@ ActiveRecord::Schema.define(version: 20180503024005) do
     t.string "zip"
     t.integer "max_capacity"
     t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "registrations", force: :cascade do |t|
     t.integer "camp_id"
     t.integer "student_id"
     t.string "payment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["camp_id"], name: "index_registrations_on_camp_id"
     t.index ["student_id"], name: "index_registrations_on_student_id"
   end
@@ -84,6 +98,8 @@ ActiveRecord::Schema.define(version: 20180503024005) do
     t.date "date_of_birth"
     t.integer "rating", default: 0
     t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["family_id"], name: "index_students_on_family_id"
   end
 
@@ -94,6 +110,8 @@ ActiveRecord::Schema.define(version: 20180503024005) do
     t.string "email"
     t.string "phone"
     t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

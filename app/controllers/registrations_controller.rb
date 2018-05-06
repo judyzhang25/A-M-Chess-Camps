@@ -17,9 +17,11 @@ class RegistrationsController < ApplicationController
     camp_id = params[:id]
     student_id = params[:student_id]
     @registration = Registration.where(camp_id: camp_id, student_id: student_id)
+    student = Student.find(student_id)
+    camp = Camp.find(camp_id)
     unless @registration.nil?
-        @registration.destroy
-        flash[:notice] = "Successfully removed this registration"
+        @registration.destroy_all
+        flash[:notice] = "#{student.proper_name} was successfully removed from #{camp.name}."
     end
   end
   
@@ -44,11 +46,10 @@ class RegistrationsController < ApplicationController
   def remove_item
     camp_id = params[:id]
     student_id = params[:student_id]
-    byebug
     remove_registration_from_cart(camp_id, student_id)
     camp = Camp.find(camp_id)
     student = Student.find(student_id)
-    redirect_to home_path
+    redirect_to items_path
     flash[:notice] = "#{camp.name} for #{student.first_name} was removed from your cart."
   end
   
@@ -64,7 +65,7 @@ class RegistrationsController < ApplicationController
       student_id = reg[1]
       camp_id = reg[0]
       r = Registration.new(camp_id: camp_id, student_id: student_id, credit_card_number: number, expiration_month: month, expiration_year: year)
-      unless r.save
+      unless r.save && r.pay
         redirect_to items_path, notice: "Your order did not go through."
         return
       end

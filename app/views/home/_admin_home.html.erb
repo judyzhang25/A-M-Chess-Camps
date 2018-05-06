@@ -30,8 +30,43 @@
       </div>
     </div>
   </div>
-  <div id="upcoming" class="col s12">Test 2</div>
-  <div id="stats" class="col s12">Test 2</div>
+  
+  <div id="upcoming" class="col s12 center">
+    <% @all_camps = current_role.camps.upcoming %>
+    <h4>Upcoming Camps</h4><br>
+    <table>
+    <tbody class="home">
+        <thead>
+          <tr>
+            <th>Camp</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Time_Slot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @all_camps.each do |c| %>
+            <tr>
+              <td><%= link_to c.name, c %></td>
+              <td><%= link_to c.location.name, c.location %></td>
+              <td><%= c.start_date.strftime("%m/%d/%y") %></td>
+              <td><%= c.time_slot == "am" ? "Morning" : "Afternoon" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        
+    </tbody>
+    </table>
+  </div>
+  <div id="stats">
+    <%= high_chart("my_id2", @chart2) %>
+    <%= high_chart("my_id3", @chart3) do |c| %>
+          <%= raw "options.tooltip.formatter = function() {return '<b> YUPI!! '+ this.point.name +'</b>: '+ this.y +' %';}"  %>
+          <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }"  %>
+      <% end %>
+    
+    <%= high_chart("my_id4", @chart4) %>
+  </div>
 </div>
 
 

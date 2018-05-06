@@ -4,7 +4,7 @@ class CreateCampInstructors < ActiveRecord::Migration[5.1]
       t.references :camp, foreign_key: true
       t.references :instructor, foreign_key: true
 
-      # t.timestamps
+      t.timestamps
     end
   end
 end

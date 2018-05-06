@@ -86,6 +86,12 @@ gem 'jquery-ui-rails', '6.0.1'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
+#plotting gems
+gem "chartkick"
+gem 'groupdate'
+gem 'lazy_high_charts'
+
+
 # Additional gems that are very useful in Rails development
 group :development do
   gem 'better_errors'

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>A&M Chess Camp :: <%= controller.controller_name.capitalize %></title>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
@@ -36,7 +37,7 @@
           <% elsif logged_in? && current_user.role?(:admin) %>
             <div class="center-align white-text"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
             <a class="btn waves-effect" href="/home/dash">Upcoming</a>
-            <a class="btn waves-effect">Manage</a>
+            <a class="btn waves-effect" href="/home/dash#upcoming">Manage</a>
             <% elsif logged_in? && current_user.role?(:instructor) %>
             <div class="center-align white-text"><h4>Welcome <%= current_role.first_name %> <%= current_role.last_name %></h4></div>
             <a class="btn waves-effect" href="/home/dash">Upcoming</a>

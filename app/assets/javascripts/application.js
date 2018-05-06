@@ -18,6 +18,11 @@
 //= require vue
 //= require moment 
 //= require fullcalendar
+//= require Chart.bundle
+//= require chartkick
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
+
 
 // $( document ).ready(function () {
 //     $('select').material_select();

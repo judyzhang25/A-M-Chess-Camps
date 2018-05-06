@@ -8,7 +8,7 @@ class CreateStudents < ActiveRecord::Migration[5.1]
       t.integer :rating, default: 0
       t.boolean :active, default: true
 
-      # t.timestamps
+      t.timestamps
     end
   end
 end
