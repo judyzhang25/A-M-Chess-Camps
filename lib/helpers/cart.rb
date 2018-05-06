@@ -44,7 +44,7 @@ module AppHelpers
       total = 0.0
       return total if session[:cart].empty? # skip if cart empty...
       session[:cart].each do |cart_item|
-        total += cart_item.cost
+        total += cart_item['cost']
       end
       total
     end
@@ -53,6 +53,7 @@ module AppHelpers
       unless session[:cart].nil? || session[:cart].empty?
         reg_ids = session[:cart].map{|ci| ci['ids']}
       end
+      byebug
       return reg_ids
     end
 

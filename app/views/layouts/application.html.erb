@@ -23,6 +23,7 @@
     <% end %>
     
     <% if home_bool %>
+      <%= render :partial => "partials/flash" %>
       <div class="carousel carousel-slider center" style="height:700px;">
         <div class="carousel-fixed-item center" style="font-family: 'Montserrat', sans-serif;">
           <%= image_tag 'crown.png' %>
@@ -89,10 +90,10 @@
             <%= f.password_field :password %>
           </div>
         </div>
-        <div class="actions"><%= f.submit "Log In" %></div>
+        <div class="actions btn"><%= f.submit "Log In" %></div>
         
         <% end %>
-      <p>New? <a class="modal-close modal-trigger" href="#signup">Signup here</a></p>
+      <p>New? <a class="btn modal-close modal-trigger" href="#signup">Signup here</a></p>
     </div>
     
   </div>
@@ -103,17 +104,8 @@
         <br />
         <% @family = Family.new %>
         <%= render partial: "families/form", locals: {object: @family} %>
-      <p>Have an account? <a class="modal-close modal-trigger" href="#login">Login here</a></p>
+      <p>Have an account? <a class="btn modal-close modal-trigger" href="#login">Login here</a></p>
     </div>
   </div>
-  
-  <% if logged_in? && current_user.role?(:parent) %>
-    <div id="cart" class="modal">
-      <div class="modal-content">
-        <center><h4>My Cart</h4></center>
-        <%= render partial: "partials/cart" %>
-      </div>
-    </div>
-  <% end %>
   
 </html>

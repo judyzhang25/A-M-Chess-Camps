@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(registration_params)
     if @registration.save
-      redirect_to registration_path(@registration), notice: "You have registered #{@registration.student.first_name} for #{@registration.camp.name}!"
+      redirect_to home_path, notice: "Your order is complete!"
     else
       render action: 'new'
     end
@@ -44,15 +44,36 @@ class RegistrationsController < ApplicationController
   def remove_item
     camp_id = params[:id]
     student_id = params[:student_id]
-    remove_registration_from_cart(:camp_id, :student_id)
-    camp = Camp.find(:camp_id)
-    student = Student.find(:student_id)
-    flash notice = "#{camp.name} for #{student.first_name} was removed from your cart."
+    byebug
+    remove_registration_from_cart(camp_id, student_id)
+    camp = Camp.find(camp_id)
+    student = Student.find(student_id)
+    redirect_to home_path
+    flash[:notice] = "#{camp.name} for #{student.first_name} was removed from your cart."
   end
   
-  def clear
+  def checkout
+    number = params[:number].delete(' ')
+    expiry = params[:expiry].split('/')
+    month = expiry[0].to_i
+    year = expiry[1].to_i
+    unless session[:cart].nil? || session[:cart].empty?
+      reg_ids = session[:cart].map{|ci| ci['ids']}
+    end
+    reg_ids.each do |reg|
+      student_id = reg[1]
+      camp_id = reg[0]
+      r = Registration.new(camp_id: camp_id, student_id: student_id, credit_card_number: number, expiration_month: month, expiration_year: year)
+      unless r.save
+        redirect_to items_path, notice: "Your order did not go through."
+        return
+      end
+    end
     clear_cart
+    redirect_to home_path, notice: "Your order is complete!"
   end
+    
+   
 
   private
     def set_registration

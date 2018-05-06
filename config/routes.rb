@@ -31,12 +31,15 @@ Rails.application.routes.draw do
   # delete 'registrations', to: 'registrations#destroy', as: :registration
   
   # #cart
-  # get 'cart', to: 'registrations#see_cart', as: :items
+  get 'see_cart', to: 'registrations#see_cart', as: :items
+  post 'see_cart', to: 'registrations#checkout', as: :checkout
   # delete 'cart', to: "registrations#remove_item", as: :item
   
   get 'camps/:id/students', to: 'camps#students', as: :camp_students
   post 'camps/:id/students', to: 'registrations#add_item', as: :registrations
-  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :remove_item
+  get 'camps/:id/students/:student_id', to: 'registrations#remove_item', as: :remove_item
+  delete 'camps/:id/students/:student_id', to: 'registrations#destroy', as: :registration
+  
   
   # Routs for managing users and sessions
   get 'user/edit' => 'users#edit', :as => :edit_current_user

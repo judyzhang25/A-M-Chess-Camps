@@ -69,3 +69,11 @@ $(document).ready(function() {
 //     var instances = M.Sidenav.init(elems, options);
 //   });
 });
+
+$('form').card({
+    // a selector or DOM element for the container
+    // where you want the card to appear
+    container: '.card-wrapper', // *required*
+
+    // all of the other options from above
+});

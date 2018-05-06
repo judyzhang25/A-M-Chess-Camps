@@ -74,6 +74,7 @@ class Ability
       #can create new registrations for students in their family, but may not edit
       #or remove those registrations once payment is made.
       can :create, Registration
+      can :see_cart, Registration
       
       #cannot view any information about students and families they are not
       #associated with, save for a list of registrered students on the camp

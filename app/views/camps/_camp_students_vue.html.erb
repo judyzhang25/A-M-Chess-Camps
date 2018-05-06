@@ -1,7 +1,10 @@
 
 <div id="registrations">
   <%= hidden_field_tag "camp_id", @camp.id %>
-  <% if @students.empty? %>
+  <% if current_user.role?(:parent) %>
+    <% @eligible_students = current_role.students.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating)).to_a - @camp.students.to_a %>
+  <% end %>
+  <% if @students.empty? && !@eligible_students.empty? && !@camp.is_full? %>
     <% if logged_in? && current_user.role?(:parent) %>
       <div class="card indigo lighten-3">
         <div class="card-action">
@@ -12,15 +15,15 @@
   <% else %>
     <div class="card indigo lighten-2" >
       <div class="card-content white-text">
-        <span class="card-title">Registered Students</span>
         <% if current_user.role?(:admin) || @families.include?(current_role) || @instructors.include?(current_role) %>
-        <ul is='student-row' 
-          v-for='student in students' 
-          v-bind:student='student'
-          class="no_bullet">  
-        </ul>
+          <span class="card-title">Registered Students</span>
+          <ul is='student-row' 
+            v-for='student in students' 
+            v-bind:student='student'
+            class="no_bullet">  
+          </ul>
         <% end %>
-        <% if logged_in? && current_user.role?(:parent) %>
+        <% if logged_in? && current_user.role?(:parent) && !@eligible_students.empty? && !@camp.is_full? %>
           <div class="card-action">
             <div v-if="modal_open">
               <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>

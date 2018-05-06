@@ -1,0 +1,69 @@
+<% if session[:cart].empty? %>
+<center><p>Your cart is empty!</p>
+<a class="btn waves-effect" href="/camps">Add Camps</a></center>
+<% else %>
+  <h4>My Cart</h4>
+  <div class="col s7">
+  <table class="center">
+    <thead>
+      <tr>
+        <th>Camp</th>
+        <th>Student</th>
+        <th>Cost</th>
+        <th>Start Date</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% session[:cart].each do |item| %>
+        <tr>
+          <td><%= item['camp_name'] %></td>
+          <td><%= item['student_name'] %></td>
+          <td><%= item['cost'] %></td>
+          <td><%= item['date'] %></td>
+          <td><%= link_to 'Remove', remove_item_path(id: item['ids'][0], student_id: item['ids'][1]), :class=>"btn waves-effect waves-light" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h5>Total: $<%= @total %></h5>
+  </div>
+  
+  
+  <div class="col s5">
+      <div class='card-wrapper'></div>
+      
+      <form action="/see_cart" method="post">
+        <div class="row">
+          <div class="col s6">
+            <input placeholder="Card number" type="text" name="number" required>
+          </div>
+          <div class="col s6">
+            <input placeholder="Full name" type="text" name="name" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3">
+            <input placeholder="MM/YYYY" type="text" name="expiry" required>
+          </div>
+          <div class="col s3">
+            <input placeholder="CVC" type="text" name="cvc" required>
+          </div>
+          <div class="col s6">
+            <input type="submit" value="Submit" class="btn">
+          </div>
+        </div>
+        <div class="row">
+          
+        </div>
+      </form>
+      <script>
+      
+      var card = new Card({
+          form: 'form',
+          container: '.card-wrapper',
+      });
+      </script>
+  </div>
+<% end %>
