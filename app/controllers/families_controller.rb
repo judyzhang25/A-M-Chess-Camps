@@ -28,6 +28,10 @@ class FamiliesController < ApplicationController
     else
       @family.user_id = @user.id
       if @family.save
+        if session[:user_id].nil?
+          redirect_to home_path, notice: "#{@family.family_name} was added to the system."
+          return
+        end
         redirect_to family_path(@family), notice: "#{@family.family_name} was added to the system."
       else
         render action: 'new'
