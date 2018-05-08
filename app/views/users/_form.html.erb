@@ -2,14 +2,14 @@
   <%= f.error_notification %>
   <div class="row">
     <div class="form-inputs">
-      <% if !current_user.role?(:admin) %>
-        <%= f.input :username, as: :hidden, label_html: { class: 'active' } %>
-        <%= f.input :role, as: :hidden, label_html: { class: 'active' }, collection: User::ROLES, include_blank: true %>
-        <%= f.input :active, as: :hidden %>
-      <% else %>
+      <% if logged_in? && current_user.role?(:admin) %>
         <%= f.input :username, label_html: { class: 'active' } %>
         <%= f.input :role, label_html: { class: 'active' }, collection: User::ROLES, include_blank: true %>
         <%= f.input :active %>
+      <% else %>
+        <%= f.input :username, as: :hidden, label_html: { class: 'active' } %>
+        <%= f.input :role, as: :hidden, label_html: { class: 'active' }, collection: User::ROLES, include_blank: true %>
+        <%= f.input :active, as: :hidden %>
       <% end %>
       <%= f.input :password, label_html: { class: 'active' } %>
       <%= f.input :password_confirmation, label_html: { class: 'active' } %>
