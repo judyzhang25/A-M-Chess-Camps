@@ -13,8 +13,8 @@
         </thead>
           <% for reg in registrations %>
             <tr>
-              <td><%= reg.camp.name %></td>
-              <td><%= reg.student.proper_name %></td>
+              <td><%= link_to reg.camp.name, reg.camp %></td>
+              <td><%= link_to reg.student.proper_name, reg.student %></td>
               <td><%= reg.camp.cost %></td>
               <td><%= reg.payment.nil? ? "No" : "Yes" %></td>
             </tr>

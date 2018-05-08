@@ -66,7 +66,7 @@ class Ability
       can :show, Location
       
       #can manage all of their students
-      can :manage, Student do |s|
+      can [:create, :update, :edit, :show, :destroy], Student do |s|
         family = Family.find_by(user_id: user.id)
         s.family_id == family.id
       end

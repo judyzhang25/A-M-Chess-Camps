@@ -8,13 +8,13 @@
   </div>
 </div>
 <div class="row">
-  <% if can? :index, Location %>
-    <div class="col s12">
-      <% if logged_in? %>
-        <%= render :partial => "partials/object_options", locals: {model_name: "location", object: @location} %>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="col s12">
+    <% if logged_in? && current_user.role?(:admin) %>
+      <%= render :partial => "partials/object_options", locals: {model_name: "location", object: @location} %>
+    <% else %>
+      <%= link_to 'Back', :back %>
+    <% end %>
+  </div>
 </div>
 <%# link_to 'Edit', edit_location_path(@location) %>
 <%# link_to 'Back', locations_path %>
