@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     # finding all the active owners and paginating that list (will_paginate)
-    @users = User.all.alphabetical.paginate(page: params[:page]).per_page(15)
+    @users = User.all.alphabetical.paginate(page: params[:users]).per_page(15)
   end
 
   def new
@@ -28,9 +28,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if user_params[:password].nil?
+      if @user.update_attributes(user_params)
+        flash[:notice] = "Successfully updated #{@user.username}."
+        redirect_to user_url(@user)
+      else
+        render action: 'edit'
+      end
+    elsif @user.update_attributes(user_no_pass_params)
       flash[:notice] = "Successfully updated #{@user.username}."
-      redirect_to users_url
+      redirect_to user_url(@user)
     else
       render action: 'edit'
     end
@@ -51,6 +58,10 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:active, :username, :role, :password, :password_confirmation, :email, :phone)
+    end
+    
+    def user_params
+      params.require(:user).permit(:active, :username, :role, :email, :phone)
     end
 
 end
