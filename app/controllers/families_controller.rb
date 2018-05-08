@@ -41,6 +41,11 @@ class FamiliesController < ApplicationController
 
   def update
     @family.update(family_params)
+    if !family_params[:password].nil?
+      @user = User.find(@family.user_id)
+      @user.update(user_params)
+      @user.save
+    end
     if @family.save
       redirect_to family_path(@family), notice: "The #{@family.family_name} family was revised in the system."
     else

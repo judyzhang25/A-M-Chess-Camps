@@ -32,9 +32,6 @@ class Ability
         f == Instructor.find_by(user_id: user.id)
       end
       
-      #can see list of all students in their camps
-      can :index, Student
-      
       #can see details of students attending their camps
       can :show, Student do |this_student|
         instructor = Instructor.find_by(user_id: user.id)
@@ -105,7 +102,6 @@ class Ability
       can :create, Family
       
       can :instructors, Camp
-      can :students, Camp
     end
     #
     # The first argument to `can` is the action you are giving the user

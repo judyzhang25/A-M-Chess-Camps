@@ -1,4 +1,8 @@
-<% if session[:cart].empty? %>
+<% if current_role.students.empty? %>
+<center><p>You need students first!</p>
+<a class="btn waves-effect" href="/home/dash#account">Add Students</a></center>
+
+<% elsif session[:cart].empty? %>
 <center><p>Your cart is empty!</p>
 <a class="btn waves-effect" href="/camps">Add Camps</a></center>
 <% else %>
@@ -45,7 +49,7 @@
         </div>
         <div class="row">
           <div class="col s3">
-            <input placeholder="MM/YYYY" type="text" name="expiry" required>
+            <input placeholder="MM/YY" type="text" name="expiry" required>
           </div>
           <div class="col s3">
             <input placeholder="CVC" type="text" name="cvc" required>

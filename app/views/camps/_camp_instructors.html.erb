@@ -43,7 +43,12 @@
     <% if logged_in? && current_user.role?(:admin) %>
       <a v-on:click="remove_record(camp_instructor)" class="remove">x&nbsp;&nbsp;</a>
     <% end %>
-    {{ camp_instructor.first_name + " " + camp_instructor.last_name }}
+    <% if logged_in? && (current_user.role?(:admin) || @instructors.include?(current_role)) %>
+      <a v-on:click="link_to(camp_instructor)">{{ camp_instructor.first_name }}&nbsp;{{ camp_instructor.last_name }}</a>
+    <% else %>
+      {{ camp_instructor.first_name + " " + camp_instructor.last_name }}
+    <% end %>
+    
     
   </li>
 </script>

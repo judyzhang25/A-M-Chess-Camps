@@ -11,7 +11,9 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
   validates_format_of :phone, with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes or dots"
   validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil))\z/i, message: "is not a valid format"
-
+  
+  scope :alphabetical, -> { order('email') }
+  
   # callbacks
   before_save :reformat_phone
 
@@ -24,8 +26,8 @@ class User < ApplicationRecord
   end
   
   #login by username
-  def self.authenticate(username,password)
-    find_by_username(username).try(:authenticate, password)
+  def self.authenticate(email,password)
+    find_by_email(email).try(:authenticate, password)
   end
     
   private

@@ -57,7 +57,7 @@ class RegistrationsController < ApplicationController
     number = params[:number].delete(' ')
     expiry = params[:expiry].split('/')
     month = expiry[0].to_i
-    year = expiry[1].to_i
+    year = expiry[1].to_i + 2000
     unless session[:cart].nil? || session[:cart].empty?
       reg_ids = session[:cart].map{|ci| ci['ids']}
     end

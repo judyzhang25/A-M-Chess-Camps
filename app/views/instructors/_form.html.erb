@@ -6,10 +6,12 @@
         <%= f.input :first_name, label_html: { class: 'active' } %>
         <%= f.input :last_name, label_html: { class: 'active' } %>
         <%= f.input :user_id, label_html: { class: 'active' } %>
+        <%= f.input :active %>
       <% else %>
         <%= f.input :first_name, as: :hidden, label_html: { class: 'active' } %>
         <%= f.input :last_name, as: :hidden, label_html: { class: 'active' } %>
         <%= f.input :user_id, as: :hidden, label_html: { class: 'active' } %>
+        <%= f.input :active %>
       <% end %>
       <%= f.input :bio, label_html: { class: 'active' } %>
       <%= f.input :email, label_html: { class: 'active' } %>
@@ -17,7 +19,7 @@
       <%= f.input :photo, input_type: 'file', label_html: { class: 'active' } %>
       <%= f.input :password, label_html: { class: 'active' } %>
       <%= f.input :password_confirmation, label_html: { class: 'active' } %>
-      <%= f.input :active %>
+      
     </div>
   </div>
   <div class="row">

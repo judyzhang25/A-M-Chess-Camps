@@ -41,25 +41,37 @@
 
 
 $(document).ready(function(){
-    $('.tabs').tabs();
+    $('.tabs').tabs({
+      beforeLoad: $('#calendar').fullCalendar({
+      header: {
+        left: 'today',
+        center: 'title',
+        right: 'prev,next'
+      },
+      selectable: true,
+      events: '/camps.json',
+      eventLimit: true,
+      })
+    });
     $('.parallax').parallax();
     $('.modal').modal();
     $('.carousel.carousel-slider').carousel({
       fullWidth: true,
       indicators: true
     });
-
-        
-
+    if ($('.carousel').length) {
+      autoplay()   
+      function autoplay() {
+          $('.carousel').carousel('next');
+          setTimeout(autoplay, 8000);
+      }
+    }
 });
 
-autoplay()   
-function autoplay() {
-    $('.carousel').carousel('next');
-    setTimeout(autoplay, 8000);
-}
+
 
 $(document).ready(function() {
+  // $('#dash_btn').on('click', function() {
   $('#calendar').fullCalendar({
       header: {
         left: 'today',
@@ -70,6 +82,8 @@ $(document).ready(function() {
       events: '/camps.json',
       eventLimit: true,
   });
+  // });
+  
 // document.addEventListener('DOMContentLoaded', function() {
 //     var elems = document.querySelectorAll('.sidenav');
 //     var instances = M.Sidenav.init(elems, options);

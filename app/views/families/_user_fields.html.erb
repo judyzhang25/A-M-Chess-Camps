@@ -1,0 +1,10 @@
+<%= f.input :phone, label_html: { class: 'active' } %>
+<%= f.input :email, label_html: { class: 'active' } %>
+<%= f.input :username, label_html: { class: 'active' } %>
+<%= f.input :password, label_html: { class: 'active' } %>
+<%= f.input :password_confirmation, label_html: { class: 'active' } %>
+<% if logged_in? && current_user.role?(:admin) %>
+    <%= f.input :active %>
+<% else %>
+    <%= f.input :active, as: :hidden %>
+<% end %>

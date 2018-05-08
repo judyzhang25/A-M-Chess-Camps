@@ -36,7 +36,13 @@ class InstructorsController < ApplicationController
   end
 
   def update
-    if @instructor.update(instructor_params)
+    @instructor.update(instructor_params)
+    if !instructor_params[:password].nil?
+      @user = User.find(@instructor.user_id)
+      @user.update(user_params)
+      @user.save
+    end
+    if @instructor.save
       redirect_to instructor_path(@instructor), notice: "#{@instructor.first_name} #{@instructor.last_name} was revised in the system."
     else
       render action: 'edit'

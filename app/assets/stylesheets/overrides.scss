@@ -1,3 +1,12 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+html a {
+  color: #a9bcd0;
+}
+
+
 /********** TOPBAR & NAV ********/
 // nav {
 //   background-color: #ffffff;
@@ -55,10 +64,26 @@
 .modal-footer {
   padding: 50px;
 }
+.modal {
+  width: 50% !important ;
+}
 
 /********** PARALLAX ********/
 .parallax-container {
   height: 400px;
+}
+
+.card a {
+  cursor: pointer;
+  color: #d8dbe2;
+}
+
+.card .remove {
+  cursor: pointer;
+}
+
+.card-title a {
+  color: #fff;
 }
 
 /********** CARDS *********/
@@ -87,14 +112,6 @@ nav {
 
 footer {
   font-family: 'Montserrat', sans-serif;
-}
-
-html {
-  font-family: 'Roboto', sans-serif;
-}
-
-html a {
-  color: #a9bcd0;
 }
 
 .absolute {

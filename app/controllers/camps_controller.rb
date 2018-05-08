@@ -5,16 +5,20 @@ class CampsController < ApplicationController
   def index
     @active_camps = Camp.all.active.chronological.paginate(:page => params[:active_camps]).per_page(10)
     @inactive_camps = Camp.all.inactive.chronological.paginate(:page => params[:inactive_camps]).per_page(1)
-    @camp1 = Curriculum.where(name: "Principles of Chess")
-    @camp2 = Curriculum.where(name: "Endgame Principles")
-    @camp3 = Curriculum.where(name: "Mastering Chess Tactics")
+    @camp1 = Curriculum.where(name: "Principles of Chess").first
+    @camp2 = Curriculum.where(name: "Endgame Principles").first
+    @camp3 = Curriculum.where(name: "Mastering Chess Tactics").first
   end
 
   def show
     @instructors = @camp.instructors.alphabetical
     @families = @camp.students.map(&:family)
     @students = @camp.students.alphabetical
-    @eligible_students = Student.all.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating))
+    if logged_in? && current_user.role?(:parent)
+      @eligible_students = current_role.students.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating)).to_a - @camp.students.to_a
+    else
+      @eligible_students = Student.all.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating))
+    end
   end
 
   def edit

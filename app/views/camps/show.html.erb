@@ -5,7 +5,7 @@
   </div>
   <div class="col s5">
     <%= render :partial => "camp_instructors"%>
-    <% if logged_in? && !current_user.role?(:instructor)%>
+    <% if logged_in? && (current_user.role?(:admin) || (current_user.role?(:instructor) && current_role.camps.include?(@camp)) || (current_user.role?(:parent) && !@eligible_students.empty?))%>
       <%= render :partial => "camp_students_vue"%>
     <% end %>
     

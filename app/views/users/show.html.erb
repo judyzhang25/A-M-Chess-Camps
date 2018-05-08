@@ -1,0 +1,34 @@
+<div class="row">
+  <h4 id= "headline" class="center"><br><%= @user.email %><br><br></h4><br>
+  <div class="col s6 offset-s3">
+    <div class="card">
+        <div class="card-content">
+            <h5 class="center">Basic Information</h5>
+            <p><strong>Username: </strong><%= @user.username %></p>
+            <p><strong>Email: </strong><%= @user.email %></p>
+            <p><strong>Phone: </strong><%= number_to_phone @user.phone %></p>
+            <p><strong>Role: </strong>
+                <% if @user.role?(:instructor) %>
+                    Instructor
+                <% elsif @user.role?(:admin) %>
+                    Admin
+                <% elsif @user.role?(:parent) %>
+                    Parent
+                <% end %>
+            </p>
+            <p><strong>Active:</strong>
+              <%= @user.active ? "Yes" : "No" %>
+            </p>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <% if can? :index, User %>
+    <div class="col s12">
+      <% if logged_in? %>
+        <%= render :partial => "partials/object_options", locals: {model_name: "user", object: @user} %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

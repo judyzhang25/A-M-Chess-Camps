@@ -69,8 +69,10 @@
           <% end %></h4>
     
           <h5>Basic Information</h5>
-          <% unless @instructor.photo_url.nil? %>
-          <p class="instructor_image"><%= image_tag @instructor.photo_url %></p>
+          <% if @instructor.photo_url.nil? %>
+          <p class="center instructor_image"><%= image_tag "default.png" %></p>
+          <% else %>
+          <p class="center instructor_image"><%= image_tag @instructor.photo_url %></p>
           <% end %>
           <p><strong>Bio: </strong><%= @instructor.bio %></p>
           <p><strong>Email: </strong><%= @instructor.email %></p>

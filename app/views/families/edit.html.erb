@@ -1,5 +1,42 @@
-<h4 id= "headline" class="center"><br>Editing Family<br><br></h4><br>
-<%= render 'form', family: @family %>
+<% if logged_in? && current_user.role?(:admin) %>
+<%= render partial: "partials/form2_structure", locals: {object: @family, 
+                                                        type_of_form: "Editing Family",
+                                                        fields1: "family_fields",
+                                                        section_2: "User Account",
+                                                        fields2: "user_fields"} %>
+<% else %>
+<div class="card">    
+  <div class="card-content">
+    
+
+    <span class="card-title"><h4 id= "headline" class="center"><br>Editing Family<br><br></h4><br></span>
+    <%= simple_form_for(@family) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+        <%= f.input :family_name, as: :hidden, label_html: { class: 'active' } %>
+        <%= f.input :parent_first_name, as: :hidden, label_html: { class: 'active' } %>
+        <%= f.input :phone, label_html: { class: 'active' } %>
+        <%= f.input :email, label_html: { class: 'active' } %>
+        <%= f.input :username, as: :hidden, label_html: { class: 'active' } %>
+        <%= f.input :password, label_html: { class: 'active' } %>
+        <%= f.input :password_confirmation, label_html: { class: 'active' } %>
+        <% if logged_in? && current_user.role?(:admin) %>
+            <%= f.input :active %>
+        <% else %>
+            <%= f.input :active, as: :hidden %>
+        <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-actions col s9">
+          <%= f.button :submit %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
 
 <%= link_to 'Show', @family %> 
 <% if current_role == @family %>

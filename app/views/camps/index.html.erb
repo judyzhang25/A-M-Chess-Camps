@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-image" >
         <%= link_to "#{image_tag ("camp.jpg")}".html_safe, curriculum_path(@camp1) %>
-        <span class="card-title">Principles of Chess</span>
+        <span class="card-title"><%= link_to "Principles of Chess", curriculum_path(@camp1)%></span>
       </div>
     </div>
   </div>
@@ -11,7 +11,7 @@
     <div class="card">
       <div class="card-image">
         <%= link_to "#{image_tag ("camp1.jpg")}".html_safe, curriculum_path(@camp2) %>
-        <span class="card-title">Endgame Principles</span>
+        <span class="card-title"><%= link_to "Endgame Principles", curriculum_path(@camp2)%></span>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <div class="card">
       <div class="card-image">
         <%= link_to "#{image_tag ("camp2.jpg")}".html_safe, curriculum_path(@camp3) %>
-        <span class="card-title">Mastering Chess Tactics</span>
+        <span class="card-title"><%= link_to "Mastering Chess Tactics", curriculum_path(@camp3)%></span>
       </div>
     </div>
   </div>

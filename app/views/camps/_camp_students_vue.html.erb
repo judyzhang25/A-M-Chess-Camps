@@ -1,9 +1,6 @@
 
 <div id="registrations">
   <%= hidden_field_tag "camp_id", @camp.id %>
-  <% if current_user.role?(:parent) %>
-    <% @eligible_students = current_role.students.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating)).to_a - @camp.students.to_a %>
-  <% end %>
   <% if @students.empty? && !@eligible_students.empty? && !@camp.is_full? %>
     <% if logged_in? && current_user.role?(:parent) %>
       <div class="card indigo lighten-3">

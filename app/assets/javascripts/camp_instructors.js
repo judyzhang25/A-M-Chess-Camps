@@ -39,7 +39,10 @@ $(document).on('ready', function() {
     methods: {
       remove_record: function(camp_instructor){
         run_ajax('DELETE', {camp_instructor: camp_instructor}, '/camps/'.concat(this.camp_id, '/instructors/', camp_instructor['id'], '.json'));
-      }
+      },
+      link_to: function(camp_instructor){
+        window.location.href = "/instructors/".concat(camp_instructor['id'])
+      },
     }
   });
 
