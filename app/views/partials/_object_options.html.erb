@@ -8,14 +8,14 @@
   <% end %>
   &nbsp;&nbsp;
   
-  <% if (can? :update, model_name.capitalize) || (current_user.role?(:parent) && current_role.students.include?(object)) || (current_role == object) %>
+  <% if logged_in? && ((can? :update, model_name.capitalize) || (current_user.role?(:parent) && current_role.students.include?(object)) || (current_role == object)) %>
     <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'waves-effect waves-light btn') do %>
         &nbsp;<%= "Edit #{opt}" %>
     <% end %>
   <% end %>
   &nbsp;&nbsp;
   
-  <% if (can? :destroy, model_name.capitalize) || (current_user.role?(:parent) && current_role.students.include?(object))%>
+  <% if logged_in? && ((can? :destroy, model_name.capitalize) || (current_user.role?(:parent) && current_role.students.include?(object)))%>
     <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'waves-effect waves-light btn btn-alert') do %>
         &nbsp;<%= "Delete #{opt}" %>
     <% end %>

@@ -110,9 +110,9 @@
         <% @family = Family.new %>
         <%= render partial: "partials/form2_structure", locals: {object: @family, 
                                                         type_of_form: "Create a New Account",
-                                                        fields1: "family_fields",
+                                                        fields1: "home/family_fields",
                                                         section_2: "User Account",
-                                                        fields2: "user_fields"} %>
+                                                        fields2: "home/user_fields"} %>
       <p>Have an account? <a class="btn modal-close modal-trigger" href="#login">Login here</a></p>
     </div>
   </div>

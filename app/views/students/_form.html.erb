@@ -8,10 +8,12 @@
       <%= f.input :rating, label_html: { class: 'active' } %>
       <% if current_user.role?(:parent) %>
         <%= f.input :family_id, as: :hidden, input_html: { value: @family.id }, include_blank: true %>
+        <%= f.input :active, as: :hidden %>
       <% else %>
         <%= f.input :family_id, collection: Family.alphabetical.active.to_a, label_method: lambda {|t| t.family_name}, include_blank: true %>
+        <%= f.input :active %>
       <% end %>
-      <%= f.input :active %>
+      
     </div>
   </div>
   <div class="row">

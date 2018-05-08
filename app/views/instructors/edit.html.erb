@@ -39,12 +39,8 @@
     <% end %>
   </div>
 </div>
+<%= link_to 'Show', @instructor %>
+| <%= link_to 'Back', :back %>
 <% end %>
 
-<%= link_to 'Show', @instructor %>
-<% if current_role == @instructor %>
-| <%= link_to 'Back', "/home/dash#account" %>
-<% else %>
-|
-<%= link_to 'Back', instructors_path %>
-<% end %>
+
