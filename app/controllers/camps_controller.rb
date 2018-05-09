@@ -15,7 +15,12 @@ class CampsController < ApplicationController
     @families = @camp.students.map(&:family)
     @students = @camp.students.alphabetical
     if logged_in? && current_user.role?(:parent)
-      @eligible_students = current_role.students.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating)).to_a - @camp.students.to_a
+      @my_cart_students = session[:cart].map{|ci| ci['ids']}.select{|ids| ids[0].to_i == @camp.id}.map{|ids| ids[1].to_i}
+      @my_students = current_role.students.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating))
+      @eligible_students = @my_students.to_a - @camp.students.to_a - @my_students.where(id: @my_cart_students).to_a
+      if @camp.max_students- @camp.enrollment - @my_cart_students.size == 0
+        @eligible_students = []
+      end
     else
       @eligible_students = Student.all.active.alphabetical.where('rating IN (?)', (@camp.curriculum.min_rating..@camp.curriculum.max_rating))
     end

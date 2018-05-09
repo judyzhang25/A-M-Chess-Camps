@@ -66,12 +66,12 @@ class RegistrationsController < ApplicationController
       camp_id = reg[0]
       r = Registration.new(camp_id: camp_id, student_id: student_id, credit_card_number: number, expiration_month: month, expiration_year: year)
       unless r.save && r.pay
-        redirect_to items_path, notice: "Your order did not go through."
+        redirect_to items_path, notice: "Your credit card information was incorrect. Try again!"
         return
       end
     end
     clear_cart
-    redirect_to home_path, notice: "Your order is complete!"
+    redirect_to dash_path, notice: "Your order is complete!"
   end
     
    

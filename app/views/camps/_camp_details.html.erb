@@ -2,7 +2,6 @@
   <div class="card-content">
   <h5>Camp Details</h5>
     <p><%= @camp.curriculum.description %></p>
-
     <h5>Basic Information</h5>
     <p><strong>Location: </strong><%= link_to @camp.location.name, @camp.location %></p>
     <p><strong>Dates: </strong><%= @camp.start_date.strftime("%m/%d/%y") %> - <%= @camp.end_date.strftime("%m/%d/%y") %></p>

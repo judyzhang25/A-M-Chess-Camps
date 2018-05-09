@@ -22,8 +22,8 @@
     <tbody>
       <% session[:cart].each do |item| %>
         <tr>
-          <td><%= item['camp_name'] %></td>
-          <td><%= item['student_name'] %></td>
+          <td><%= link_to item['camp_name'], Camp.find(item['ids'][0].to_i) %></td>
+          <td><%= link_to item['student_name'], Student.find(item['ids'][1].to_i) %></td>
           <td><%= item['cost'] %></td>
           <td><%= item['date'] %></td>
           <td><%= link_to 'Remove', remove_item_path(id: item['ids'][0], student_id: item['ids'][1]), :class=>"btn waves-effect waves-light" %></td>
