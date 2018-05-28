@@ -6,7 +6,7 @@ To set this up, clone this repository, run the `bundle install` command to ensur
 
 Many objects are created with some element of randomness so you will get slightly different results each time it is run.  However, instructors and users are fixed.  If there were any users in this phase, all the users in the system have a password of 'secret'.  In terms of users there are two admins (Alex and Mark) and five instructor-level users (our five Head TAs: Becca, Rick, Jordan, Connor, and Sarah).  The email for each will be their first name in all lowercase + "@razingrooks.org".
 
-This project caters to three users: guest, parent, and admin. Upon running rails server, you can expect some pages like the site below.
+This project caters to four users: guest, parent, instructor, and admin. Upon running rails server, you can expect some pages like the site below.
 
 ### Guest ###
 Guests only have access to the home page, camps index and show, and curriculums index and show. They have the option of logging in or creating an account to access the site.
@@ -46,6 +46,9 @@ Admins can do everything except for register students. They have an additional f
 
 Admin Dash- Statistics
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/agenda_stats.png?raw=true "Admin Dash- Statistics")
+
+### Instructor ###
+Instructors have not been detailed, but their dashboards are identical to those of parents and they can see lists of students on the camp pages of those that they are instructors for. They can also view the information of students and families registered for their camps.
 
 Instructions for what needed to be done in this phase of the project can be found in the project write-ups found on the [67-272 course site](http://67272.cmuis.net/projects/). Please leave any questions below. Thank you and enjoy the site!
 
