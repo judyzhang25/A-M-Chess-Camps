@@ -11,23 +11,40 @@ This project caters to three users: guest, parent, and admin. Upon running rails
 ### Guest ###
 Guests only have access to the home page, camps index and show, and curriculums index and show. They have the option of logging in or creating an account to access the site.
 
+Guest Homepage
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/guest_homepage.png?raw=true "Guest Homepage")
+
+Guest Login
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/login.png?raw=true "Guest Login")
+
+Camp Index
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/active_camps.png?raw=true "Camp Index")
 
 ### Parent ###
 Parents have customized home pages and dashboards. Their dashboards allow them to see upcoming camps in either a list or calendar format. They can see their own accounts and create students. They have the ability to register their students for camps and checkout their carts. They can also edit their own students and see their updated students.
 
+Parent Homepage
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/parent_homepage.png?raw=true "Parent Homepage")
+
+Parent Camp Show
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/camp_show2.png?raw=true "Parent Camp Show")
+
+Parent Checkout
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/checkout.png?raw=true "Parent Checkout")
+
+Parent Dash- Calendar
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/agenda_calendar.png?raw=true "Parent Dash- Calendar")
+
+Parent Dash- Upcoming
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/agenda_upcoming.png?raw=true "Parent Dash- Upcoming")
+
+Parent Dash- Account
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/agenda_manage.png?raw=true "Parent Dash- Account")
 
 ### Admin ###
 Admins can do everything except for register students. They have an additional feature to their dashboard allowing them to see statistics regarding the business including registrations per curriculum/instructor/location/week, best/worst customers (limited to 12), total revenue, number of families, and number of upcoming/past registrations.
 
+Admin Dash- Statistics
 ![alt text](https://raw.githubusercontent.com/judyzhang25/A-M-Chess-Camps/master/app/assets/images/agenda_stats.png?raw=true "Admin Dash- Statistics")
 
 Instructions for what needed to be done in this phase of the project can be found in the project write-ups found on the [67-272 course site](http://67272.cmuis.net/projects/). Please leave any questions below. Thank you and enjoy the site!
