@@ -34,10 +34,13 @@ class HomeController < ApplicationController
     @max = Family.joins(:registrations).group(:family_name).size.max_by{|k,v| v}[1]
     @min = Family.joins(:registrations).group(:family_name).size.min_by{|k,v| v}[1]
     @max_fams = Family.joins(:registrations).group(:family_name).size.select{|k,v| v==@max}
-    @min_fams = Family.joins(:registrations).group(:family_name).size.select{|k,v| v==@min}
+    @min_fams = Family.joins(:registrations).group(:family_name).size.select{|k,v| v==@min}.first(13).to_h
     @graph2 = Camp.joins(:location).joins(:registrations).group(:name).count
     @graph3 = Camp.joins(:registrations).joins(:instructors).group(:first_name).count
     @graph4 = Camp.joins(:registrations).group_by_week(:start_date).count.sort_by{|x| x[1]}
+    @revenue = Camp.joins(:registrations).map{|r| r.cost}.sum
+    @upcoming_registrations = Camp.joins(:registrations).upcoming.size
+    @past_registrations = Camp.joins(:registrations).past.size
   
     #family
     @family = current_role

@@ -153,6 +153,7 @@
         </div>
       </div>
       <div class="container col s3">
+        <div class="row">
         <div class="card">
         <div class="card-content">
           <span class="card-title center">Best Customers</span><br>
@@ -176,6 +177,46 @@
               </tbody>
             </table>
           <% end %>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="card">
+        <div class="card-content">
+          <span class="card-title center">Total Revenue</span><br>
+          <% if @revenue.nil? || @revenue == 0 %>
+            <p>No revenue yet.</p>
+          <% else %>
+            <p class="center">$ <%= @revenue %></p>
+          <% end %>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="card">
+        <div class="card-content">
+          <span class="card-title center">Total Number of Families</span><br>
+          <% if Family.all.size == 0 %>
+            <p>No families yet.</p>
+          <% else %>
+            <p class="center"><%= Family.all.size %></p>
+          <% end %>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="card">
+        <div class="card-content">
+          <span class="card-title center">Total Number of Registrations</span><br>
+          <% if Registration.all.size == 0 %>
+            <p>No registrations yet.</p>
+          <% else %>
+            <p class="center">
+              Upcoming: <%= @upcoming_registrations %><br>
+              Past: <%= @past_registrations %>
+            </p>
+          <% end %>
+        </div>
         </div>
         </div>
       </div>

@@ -1,26 +1,22 @@
 
 <div id="registrations">
   <%= hidden_field_tag "camp_id", @camp.id %>
-  <% if @students.empty? && !@eligible_students.empty? && !@camp.is_full? %>
-    <% if logged_in? && current_user.role?(:parent) %>
-      <div class="card indigo lighten-3">
-        <div class="card-action">
-          <%= link_to "Add to Cart", "#", {%s(v-on:click) => "switch_modal()"} %>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
+  <% if current_user.role?(:admin) || @families.include?(current_role) || @instructors.include?(current_role) %>
     <div class="card indigo lighten-2" >
       <div class="card-content white-text">
-        <% if current_user.role?(:admin) || @families.include?(current_role) || @instructors.include?(current_role) %>
-          <span class="card-title">Registered Students</span>
-          <ul is='student-row' 
-            v-for='student in students' 
-            v-bind:student='student'
-            class="no_bullet">  
-          </ul>
-        <% end %>
-        <% if logged_in? && current_user.role?(:parent) && !@eligible_students.empty? && !@camp.is_full? %>
+        <span class="card-title">Registered Students</span>
+        <ul is='student-row' 
+          v-for='student in students' 
+          v-bind:student='student'
+          class="no_bullet">  
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <% if current_user.role?(:parent) %>
+    <div class="card indigo lighten-2" >
+      <div class="card-content white-text">
+        <% if !@eligible_students.empty? && !@camp.is_full? %>
           <div class="card-action">
             <div v-if="modal_open">
               <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
@@ -29,6 +25,10 @@
               <%= link_to "Add to Cart", "#", {%s(v-on:click) => "switch_modal()"} %>
             </div>
           </div>
+        <% elsif @camp.is_full? %>
+          <span class="center card-title">This camp is full.</span>
+        <% elsif @eligible_students.empty? %>
+          <span class="center card-title">You have no eligible students for this camp at this time.</span>
         <% end %>
       </div>
     </div>
