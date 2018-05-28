@@ -4,7 +4,7 @@ Welcome to A&M Chess Camps, a web application created for CMU's 67-272 Applicati
 
 To set this up, clone this repository, run the `bundle install` command to ensure you have all the needed gems and then create the database with `rake db:migrate`.  If you want to populate the system with fictitious, but somewhat realistic data (similar to the data given in the spreadsheets in phase 1), you can run the `rake db:populate` command.  The populate script will create a series of curriculums, instructors and over 35 camps
 
-Many objects are created with some element of randomness so you will get slightly different results each time it is run.  However, instructors and users are fixed.  If there were any users in this phase, all the users in the system have a password of 'secret'.  In terms of users there are two admins (Alex and Mark) and five instructor-level users (our five Head TAs).  The email for each will be their first name in all lowercase + "@razingrooks.org".
+Many objects are created with some element of randomness so you will get slightly different results each time it is run.  However, instructors and users are fixed.  If there were any users in this phase, all the users in the system have a password of 'secret'.  In terms of users there are two admins (Alex and Mark) and five instructor-level users (our five Head TAs: Becca, Rick, Jordan, Connor, and Sarah).  The email for each will be their first name in all lowercase + "@razingrooks.org".
 
 This project caters to three users: guest, parent, and admin. Upon running rails server, you can expect some pages like the site below.
 
